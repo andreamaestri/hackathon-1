@@ -2,6 +2,7 @@
 
 A hackathon project developed during [Hackathon1] with *code institute*.
 
+
 ![Logo](assets/images/mock-up.png)
 
 ## Description
