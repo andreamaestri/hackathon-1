@@ -57,7 +57,12 @@ fetch(apiUrl)
       // Display the next time slot
       let nextSlot = timeSlot(validFromNext, validToNext);
       console.log("The next slot is: " + nextSlot);
-      timeNextEl.innerText = nextSlot;
+      timeNextEl.innerText = nextSlot; 
+      // Calculate trend and apply dynamic color 
+      let rateChange = ((parseFloat(nextResult.value_inc_vat) - parseFloat(currentResult.value_inc_vat)) / parseFloat(currentResult.value_inc_vat)) * 100;
+      let trendArrow = rateChange > 0 ? "↗︎" : "↘︎";
+      let trendText = `${trendArrow} ${Math.abs(rateChange).toFixed(2)}%`;
+
     } else {
       console.log("No results found.");
     }
@@ -83,3 +88,4 @@ let rateNowEl = document.getElementById("rate-el-now");
 
 let timeNextEl = document.getElementById("time-el-next");
 let rateNextEl = document.getElementById("rate-el-next");
+let trendEl = document.getElementById("trend-el");
