@@ -57,12 +57,26 @@ fetch(apiUrl)
       // Display the next time slot
       let nextSlot = timeSlot(validFromNext, validToNext);
       console.log("The next slot is: " + nextSlot);
-      timeNextEl.innerText = nextSlot; 
-      // Calculate trend and apply dynamic color 
-      let rateChange = ((parseFloat(nextResult.value_inc_vat) - parseFloat(currentResult.value_inc_vat)) / parseFloat(currentResult.value_inc_vat)) * 100;
+      timeNextEl.innerText = nextSlot;
+      // Calculate trend and apply dynamic color
+      let rateChange =
+        ((parseFloat(nextResult.value_inc_vat) -
+          parseFloat(currentResult.value_inc_vat)) /
+          parseFloat(currentResult.value_inc_vat)) *
+        100;
       let trendArrow = rateChange > 0 ? "↗︎" : "↘︎";
       let trendText = `${trendArrow} ${Math.abs(rateChange).toFixed(2)}%`;
+      // Update next rate with trend
+      trendEl.innerText = `${trendText}`;
 
+      // Apply text color class dynamically
+      if (rateChange < 0) {
+        trendEl.classList.add("text-violet-500"); // Cheaper
+        trendEl.classList.remove("text-pink-600");
+      } else {
+        trendEl.classList.add("text-pink-600"); // More expensive
+        trendEl.classList.remove("text-violet-500");
+      }
     } else {
       console.log("No results found.");
     }
