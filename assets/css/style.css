@@ -26,7 +26,7 @@
     box-shadow: none !important;
 }
 
-/* Styling each of the three lines */
+/* -----------------------Styling each of the burger icon lines */
 .toggler-icon {
     display: block;
     position: absolute;
@@ -38,7 +38,7 @@
     transition: transform 0.25s ease-in-out;
 }
 
-/* Positioning the lines */
+/* ---------------------------------Positioning the burger icon lines */
 .top-bar {
     top: 0px;
 }
@@ -52,14 +52,14 @@
     bottom: 0px;
 }
 
-/* Hover effect: Change the color when hovering over the navbar-toggler */
+/*---------- Hover effect: Change the color when hovering over the navbar-toggler */
 .navbar-toggler:hover .top-bar,
 .navbar-toggler:hover .middle-bar,
 .navbar-toggler:hover .bottom-bar {
     background-color: #7A1CAC;
 }
 
-/* Toggler animation when collapsed */
+/* -----------------------------------------Toggler animation when collapsed */
 .navbar-toggler.collapsed .top-bar {
     transform: rotate(135deg);
 }
@@ -86,32 +86,31 @@
     margin-right: 20px;
 }
 
-/* Hover effect: Change the link color on hover */
+/* --------------------------- Hover effect: Change the link color on hover */
 .navbar-nav .nav-link:hover {
     color: #7A1CAC !important;
 }
 
-/* Active state for the nav link */
 .navbar-nav .nav-link:active {
     color: #7A1CAC !important;
 }
 
 /* ------------------------------------------- Offcanvas Links */
 #offcanvasNavbar .navbar-nav .nav-link {
-    color: white !important; /* Ensure links in offcanvas are white */
+    color: white !important; 
 }
 
 #offcanvasNavbar .navbar-nav .nav-link:hover {
-    color: #7A1CAC !important; /* Darken on hover for offcanvas links */
+    color: #7A1CAC !important; 
 }
 
 /* ------------------------------------------- Offcanvas styles */
 .offcanvas {
-    transform: translateX(100%) !important; /* Ensure offcanvas is hidden */
+    transform: translateX(100%) !important; 
 }
 
 .offcanvas.show {
-    transform: translateX(0) !important; /* Ensure offcanvas shows properly */
+    transform: translateX(0) !important; 
 }
 
 .offcanvas-end {
@@ -132,7 +131,7 @@ section {
     min-height: 100vh;
 }
 
-/* ------------------------------------------- Remove focus styles */
+/* ---------------Remove focus styles (dark square appears behind burger icon without this code) */
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler:focus-visible {
