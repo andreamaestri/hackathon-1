@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delius&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ------------------------------------------- Navbar*/
+
+#logo {
+    font-family: "montserrat", sans-serif;
+    color: white;
+    font-size: 25px;
+    margin-left: 15px;
+}
+
+#navBar {
+    background-color: #2E073F;
+}
+/* ------------------------------------------- Burger Icon*/
+.navbar-toggler {
+    border: none;
+    background: transparent;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+
+.toggler-icon {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: white; /* Change to desired color */
+    border-radius: 0px;
+    border-color: transparent;
+    transition: transform 0.25s ease-in-out;
+    
+}
+
+
+.top-bar {
+    top: 0px;
+    
+}
+
+.middle-bar {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.bottom-bar {
+    bottom: 0px;
+}
+
+.navbar-toggler:hover .top-bar,
+.navbar-toggler:hover .middle-bar,
+.navbar-toggler:hover .bottom-bar {
+    background-color: #7A1CAC; */
+}
+
+
+.navbar-toggler.collapsed .top-bar {
+    transform: rotate(135deg);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+    opacity: 0;
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+    transform: rotate(-135deg);
+}
+
+
+
+
+
+/* -------------------------------------------------Styling the offcanvas */
+.offcanvas-end {
+    background-color: #7A1CAC; /* for some reason can't override the color (sorted bellow) */
+    width: 280px; 
+    transition: transform 0.3s ease-in-out; /
+}
+#offcanvasNavbar {
+    background-color: #7A1CAC;
+    color: white;
+    font-family: "montserrat", sans-serif ;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important; 
+    transition: color 0.3s ease-in-out; /* Smooth transition for color change */
+}
+.navbar-nav .nav-link:hover {
+    color: #2E073F !important; /
+}
+
+.navbar-nav .nav-link:active {
+    color: white !important; 
+}
+
+/* When offcanvas is shown */
+.offcanvas.show {
+    transform: translateX(0);
+}
+
+/* When offcanvas is hidden */
+.offcanvas {
+    transform: translateX(100%);
+}
+
+/* ------------------------------------------- Background color */
+section {
+    background-color: #7A1CAC ; 
+    min-height: 100vh; 
+}
+
