@@ -41,16 +41,21 @@ fetch(apiUrl)
 let nextTime = 1000 * 60 * 30;
 let nextT = new Date(Math.round(now.getTime() / nextTime) * nextTime);
  
-console.log(nextT);
+
 
 function timeSlot(now, nextT) {
     let hour = now.getHours();
     let minute = now.getMinutes();
+    let truncatedMinute = minute >= 30 ? 30 : 0;
     let hourNext = nextT.getHours();
     let minuteNext = nextT.getMinutes();
 
-    return hour + ":" + minute + " - " + hourNext + ":" + minuteNext;
+    return hour + ":" + truncatedMinute + " - " + hourNext + ":" + minuteNext;
 }
+
+console.log(truncatedTime);
+console.log(nextT);
+
 let currentSlot = timeSlot(now, nextT);
 console.log("The current slot now is: " + currentSlot);
 
