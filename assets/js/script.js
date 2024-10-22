@@ -4,63 +4,46 @@ async function fetchUnitRates(periodFrom, periodTo) {
 
     try {
         const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data); // Log the entire response to ensure you're receiving data
-            return data.results; // Return the list of unit rates
-        } else {
-            console.error('Failed to fetch data:', response.status, response.statusText);
-        }
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+        console.log(data); // Log the entire response to ensure you're receiving data
+        return data.results || []; // Return the list of unit rates or empty array if undefined
     } catch (error) {
         console.error('Error fetching data:', error);
+        return []; // Return empty array on error
     }
-    return [];
 }
 
 function getCurrentDateRange() {
     const now = new Date();
-    const year = now.getUTCFullYear();
-    const month = String(now.getUTCMonth() + 1).padStart(2, '0');
-    const day = String(now.getUTCDate()).padStart(2, '0');
+    const periodFrom = new Date(now.setUTCHours(0, 0, 0, 0)); // Today at midnight UTC
+    const periodTo = new Date(periodFrom);
+    periodTo.setUTCDate(periodTo.getUTCDate() + 1); // Tomorrow at midnight UTC
 
-    const periodFrom = `${year}-${month}-${day}T00:00:00Z`;
-    const nextDay = new Date(now);
-    nextDay.setUTCDate(now.getUTCDate() + 1);
-    const nextYear = nextDay.getUTCFullYear();
-    const nextMonth = String(nextDay.getUTCMonth() + 1).padStart(2, '0');
-    const nextDayNum = String(nextDay.getUTCDate()).padStart(2, '0');
-    const periodTo = `${nextYear}-${nextMonth}-${nextDayNum}T00:00:00Z`;
-
-    return { periodFrom, periodTo };
+    return {
+        periodFrom: periodFrom.toISOString(),
+        periodTo: periodTo.toISOString(),
+    };
 }
 
 async function processUnitRates() {
-    const { periodFrom, periodTo } = getCurrentDateRange(); // Get date range
-    const ratesData = await fetchUnitRates(periodFrom, periodTo); // Fetch unit rates
+    const { periodFrom, periodTo } = getCurrentDateRange();
+    const ratesData = await fetchUnitRates(periodFrom, periodTo);
 
-    if (!ratesData || ratesData.length === 0) {
+    if (!ratesData.length) {
         console.log("No data received from the API");
         return; // Exit if no data is returned
     }
 
-    const timeLabels = [];
-    const unitRates = [];
+    const timeLabels = ratesData.map(rate => new Date(rate.valid_from).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    const unitRates = ratesData.map(rate => rate.value_inc_vat); // Use the rate including VAT
 
-    ratesData.forEach(rate => {
-        const time = new Date(rate.valid_from).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const unitRate = rate.value_inc_vat; // Use the rate including VAT
-
-        timeLabels.push(time); // Push the time for the x-axis
-        unitRates.push(unitRate); // Push the rate for the y-axis
-    });
-
-    plotGraph(timeLabels, unitRates); // Call function to plot the graph using this data
+    plotGraph(timeLabels, unitRates);
 }
 
 function plotGraph(timeLabels, unitRates) {
     const ctx = document.getElementById('myChart').getContext('2d');
-
-    const myChart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'line',
         data: {
             labels: timeLabels,
@@ -76,16 +59,11 @@ function plotGraph(timeLabels, unitRates) {
         options: {
             scales: {
                 x: {
-                    title: {
-                        display: true,
-                        text: 'Time'
-                    }
+                    title: { display: true, text: 'Time' },
+                    reverse: true
                 },
                 y: {
-                    title: {
-                        display: true,
-                        text: 'Cost (pence per kWh)'
-                    },
+                    title: { display: true, text: 'Cost (pence per kWh)' },
                     beginAtZero: false
                 }
             }
