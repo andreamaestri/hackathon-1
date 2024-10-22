@@ -1,7 +1,7 @@
 // PATH Parameters
 const now = new Date();
 const next = new Date(now);
-next.setMinutes(now.getMinutes() + 30);
+next.setMinutes(now.getMinutes() + 60);
 
 let periodFrom = now.toISOString();
 let periodTo = next.toISOString();
@@ -27,7 +27,8 @@ fetch(apiUrl)
   })
   .then((data) => {
     if (data.results && data.results.length > 0) {
-      let currentResult = data.results[0];
+      let currentResult = data.results[1];
+      let nextResult = data.results[0];
 
       // Extract the current rate and display it
 
@@ -43,23 +44,42 @@ fetch(apiUrl)
       let currentSlot = timeSlot(validFrom, validTo);
       console.log("The current slot now is: " + currentSlot);
       timeNowEl.innerText = currentSlot;
+
+      // Extract next rate and time slot
+      let nextRate = parseFloat(nextResult.value_inc_vat).toFixed(2) + "p";
+      console.log("Next rate (including VAT):", nextRate);
+      rateNextEl.innerText = nextRate;
+
+      // Extract validFrom and validTo for next time slot
+      let validFromNext = new Date(nextResult.valid_from);
+      let validToNext = new Date(nextResult.valid_to);
+
+      // Display the next time slot
+      let nextSlot = timeSlot(validFromNext, validToNext);
+      console.log("The next slot is: " + nextSlot);
+      timeNextEl.innerText = nextSlot;
     } else {
       console.log("No results found.");
     }
   })
   .catch((error) => {
-    console.error("Error:", error); 
+    console.error("Error:", error);
   });
 
 // Function to format the time slot
 function timeSlot(validFrom, validTo) {
-    let hour = validFrom.getHours();
-    let minute = validFrom.getMinutes();
-    let hourNext = validTo.getHours();
-    let minuteNext = validTo.getMinutes();
+  let hour = validFrom.getHours();
+  let minute = validFrom.getMinutes();
+  let hourNext = validTo.getHours();
+  let minuteNext = validTo.getMinutes();
 
-    return `${hour}:${minute.toString().padStart(2, '0')} - ${hourNext}:${minuteNext.toString().padStart(2, '0')}`;
+  return `${hour}:${minute
+    .toString()
+    .padStart(2, "0")} - ${hourNext}:${minuteNext.toString().padStart(2, "0")}`;
 }
 
 let timeNowEl = document.getElementById("time-el-now");
 let rateNowEl = document.getElementById("rate-el-now");
+
+let timeNextEl = document.getElementById("time-el-next");
+let rateNextEl = document.getElementById("rate-el-next");
