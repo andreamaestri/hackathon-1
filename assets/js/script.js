@@ -19,6 +19,26 @@ async function fetchUnitRates(periodFrom, periodTo) {
     return [];
 }
 
+// Function to get the current date range for the API request
+function getCurrentDateRange() {
+    const now = new Date();
+    const year = now.getUTCFullYear();
+    const month = String(now.getUTCMonth() + 1).padStart(2, '0'); // Month is 0-based
+    const day = String(now.getUTCDate()).padStart(2, '0');
+
+    // Midnight of the current day
+    const periodFrom = `${year}-${month}-${day}T00:00:00Z`;
+    
+    // Midnight of the next day (i.e., start of the next day)
+    const nextDay = new Date(now);
+    nextDay.setUTCDate(now.getUTCDate() + 1);
+    const nextYear = nextDay.getUTCFullYear();
+    const nextMonth = String(nextDay.getUTCMonth() + 1).padStart(2, '0');
+    const nextDayNum = String(nextDay.getUTCDate()).padStart(2, '0');
+    const periodTo = `${nextYear}-${nextMonth}-${nextDayNum}T00:00:00Z`;
+
+    return { periodFrom, periodTo };
+}
 
 // Function to process and format the data for graphing
 async function processUnitRates() {
