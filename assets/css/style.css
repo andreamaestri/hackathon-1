@@ -13,7 +13,8 @@
 #navBar {
     background-color: #2E073F;
 }
-/* ------------------------------------------- Burger Icon*/
+
+/* ------------------------------------------- Burger Icon */
 .navbar-toggler {
     border: none;
     background: transparent;
@@ -21,25 +22,25 @@
     width: 30px;
     height: 30px;
     margin-right: 20px;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-
+/* Styling each of the three lines */
 .toggler-icon {
     display: block;
     position: absolute;
     height: 2px;
     width: 100%;
-    background-color: white; /* Change to desired color */
+    background-color: white;
     border-radius: 0px;
     border-color: transparent;
     transition: transform 0.25s ease-in-out;
-    
 }
 
-
+/* Positioning the lines */
 .top-bar {
     top: 0px;
-    
 }
 
 .middle-bar {
@@ -51,13 +52,14 @@
     bottom: 0px;
 }
 
+/* Hover effect: Change the color when hovering over the navbar-toggler */
 .navbar-toggler:hover .top-bar,
 .navbar-toggler:hover .middle-bar,
 .navbar-toggler:hover .bottom-bar {
-    background-color: #7A1CAC; */
+    background-color: #7A1CAC;
 }
 
-
+/* Toggler animation when collapsed */
 .navbar-toggler.collapsed .top-bar {
     transform: rotate(135deg);
 }
@@ -70,47 +72,70 @@
     transform: rotate(-135deg);
 }
 
-
-
-
-
-/* -------------------------------------------------Styling the offcanvas */
-.offcanvas-end {
-    background-color: #7A1CAC; /* for some reason can't override the color (sorted bellow) */
-    width: 280px; 
-    transition: transform 0.3s ease-in-out; /
+/* ------------------------------------------- Navbar Links Styling */
+.navbar-nav .nav-link {
+    color: white !important; /* Make links white for both navbar and offcanvas */
+    transition: color 0.3s ease-in-out;
+    padding: 10px 15px;
+    font-weight: 600;
 }
+
+.nav-link {
+    color: white !important;
+    font-family: "montserrat", sans-serif;
+    margin-right: 20px;
+}
+
+/* Hover effect: Change the link color on hover */
+.navbar-nav .nav-link:hover {
+    color: #7A1CAC !important;
+}
+
+/* Active state for the nav link */
+.navbar-nav .nav-link:active {
+    color: #7A1CAC !important;
+}
+
+/* ------------------------------------------- Offcanvas Links */
+#offcanvasNavbar .navbar-nav .nav-link {
+    color: white !important; /* Ensure links in offcanvas are white */
+}
+
+#offcanvasNavbar .navbar-nav .nav-link:hover {
+    color: #7A1CAC !important; /* Darken on hover for offcanvas links */
+}
+
+/* ------------------------------------------- Offcanvas styles */
+.offcanvas {
+    transform: translateX(100%) !important; /* Ensure offcanvas is hidden */
+}
+
+.offcanvas.show {
+    transform: translateX(0) !important; /* Ensure offcanvas shows properly */
+}
+
+.offcanvas-end {
+    background-color: #7A1CAC;
+    width: 280px;
+    transition: transform 0.3s ease-in-out;
+}
+
 #offcanvasNavbar {
     background-color: #7A1CAC;
     color: white;
-    font-family: "montserrat", sans-serif ;
-}
-
-.navbar-nav .nav-link {
-    color: #ffffff !important; 
-    transition: color 0.3s ease-in-out; /* Smooth transition for color change */
-}
-.navbar-nav .nav-link:hover {
-    color: #2E073F !important; /
-}
-
-.navbar-nav .nav-link:active {
-    color: white !important; 
-}
-
-/* When offcanvas is shown */
-.offcanvas.show {
-    transform: translateX(0);
-}
-
-/* When offcanvas is hidden */
-.offcanvas {
-    transform: translateX(100%);
+    font-family: "montserrat", sans-serif;
 }
 
 /* ------------------------------------------- Background color */
 section {
-    background-color: #7A1CAC ; 
-    min-height: 100vh; 
+    background-color: #7A1CAC;
+    min-height: 100vh;
 }
 
+/* ------------------------------------------- Remove focus styles */
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
