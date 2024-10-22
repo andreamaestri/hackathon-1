@@ -1,131 +1,145 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# WattsUp
 
-Welcome Edward Printer,
+A hackathon project developed during [Hackathon1] with *code institute*.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+![Logo](assets/images/mock-up.png)
 
-## Gitpod Reminders
+## Description
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+WattsUp is designed to present energy rates for Octopus Energy users in a convenient and easy to understand way. It aims to help users save on their energy bills by being shown the peak and off-peak periods for energy consumption.
 
-`python3 -m http.server`
+## Features
 
-A blue button should appear to click: _Make Public_,
+- **[Feature 1]**: [Description of Feature 1]
+- **[Feature 2]**: [Description of Feature 2]
+- **[Feature 3]**: [Description of Feature 3]
+- **[Optional Additional Features]**: [Description of other features]
 
-Another blue button should appear to click: _Open Browser_.
+## UX
+### The Brief
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+#### External User’s Goal:
+The user seeks [user's goal, e.g., accessible, easy-to-understand information on a specific topic].
 
-A blue button should appear to click: _Make Public_,
+#### Site Owner’s Goal:
+The site owner wants to provide a [goal of the site owner, e.g., a user-friendly platform] that helps users [specific action or result].
 
-Another blue button should appear to click: _Open Browser_.
+### Initial Design Thoughts
+As this project aims to [purpose], the design focuses on [design principles, e.g., simplicity, ease of use, accessibility]. The color palette and layout are chosen to [specific design choices].
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+#### Color Palette
+The selected color palette includes [color palette description, e.g., calming greens and blues] to evoke [feeling or tone].
 
-To log into the Heroku toolbelt CLI:
+#### Typography
+- **[Font 1]**: Used for headers because [reason for font choice].
+- **[Font 2]**: Used for body text due to its [reason for font choice, e.g., readability].
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### User Stories
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+- **As a user**, I want to be able to visualise peak and off peak periods for gas and electricity consumption, so I can i can check prices anytime, anywhere.
+- **As a user**, I want to easily be able to navigate between sections on mobile and web website, so I can find the information i require.
+- **As a user**, I want to check what time the energy is cheaper, so I can put my washing machine on.
+- **As a user**, I want to access the data on both mobile and desktop , so I can check prices anytime, anywhere.
+- **As a user**, I want to view tips on how to reduce energy consumption during peak price periods , so I can  save on my bills.
+- **As the site owner**, I want to allow users to input their energy consumption habits. So users can receive personalized recommendations on the best times to use energy-intensive appliances.
+- **As the site owner**, I want to provide users with a visual chart of energy price trends over the day, so users can easily identify the cheapest time slots for energy consumption.
+- **As the site owner**, I want to enable users to set up automated reminders for when energy prices are low, so users can ensure they don’t miss opportunities to save on their energy costs..
 
-### Connecting your Mongo database
+### Reflections & Acceptance Criteria
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+#### Must Haves
 
-------
+- **Card-like Section**: 
 
-## Release History
+1. Card Layout and Structure
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+* Each card should have a consistent structure (e.g., title, data/value, description, and optional action buttons).
+* Cards should be clearly separated visually, with borders or shadows to distinguish them from one another.
+* The cards should automatically adjust their layout based on screen size:
+* On web (desktop): Cards should be arranged in a grid format, making use of the available space.
+* On mobile: Cards should stack vertically and resize to fit smaller screens.
 
-**June 18, 2024,** Add Mongo back into template
+2. Responsive Design
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+* The card section should be responsive, with cards resizing and rearranging depending on the screen size and device.
+* Cards should maintain readable font sizes and clear visuals on both small mobile screens and larger desktop screens.
+* On mobile, users should not need to zoom in or excessively scroll horizontally to view a full card.
 
-**May 28 2024:** Fix Mongo and Links installs
+3. Loading and Performance
 
-**April 26 2024:** Update node version to 16
+* Cards should load within 2 seconds, even when multiple cards are being displayed.
+* If data for the cards is being fetched from an API, there should be a loading indicator (e.g., a spinner or skeleton card) to signal that the data is being retrieved.
+* The section should be optimised for fast performance, even with a large number of cards, ensuring smooth scrolling and minimal load times.
 
-**September 20 2023:** Update Python version to 3.9.17.
+#### Should Have
+- **Real-Time Price Updates:**: Implement a system to fetch and display energy prices every half hour, ensuring users have the latest information.
+- **User-Friendly Dashboard:**: An intuitive dashboard that visualizes energy prices, trends, and recommended times for usage.
+- **Notification System:**: A feature that allows users to set alerts for when prices drop below a specified level.
+- **Data Visualization:**: Include graphs or charts that show historical price data and forecast trends to help users make informed decisions.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+#### Could Have
+- **Weather Integration: **: Incorporated weather data to help users understand how weather conditions might affect energy prices and consumption.
+- **Carbon Footprint Calculator:**: A tool that estimates users carbon footprint based on their energy consumption, promoting eco-friendly habits.
+- **Integration with Smart Devices:**: Users can connect smart home devices to automate energy usage based on price alerts.
+- **Community Features:**: Add a forum or discussion section where users can share tips and experiences related to energy savings.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Wireframes & Initial Design
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+- **Main Page**: [Describe key elements of Page 1, e.g., navbar, hero section].
+- **Graph Page**: [Describe key elements of Page 2, e.g., information cards].
+- **Settings**: [Describe key elements of Page 3, e.g., footer, external links].
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Mobile Wireframes
+![Mobile Device (x4)](https://hackmd.io/_uploads/B1TJz1Vx1e.png)
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### Tablet Wireframes
+![Tablet Wireframes](assets/images/wireframes-tablet.png)
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Desktop Wireframes
+![Desktop Wireframes](assets/images/wireframes-desktop.png)
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Technologies Used
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+- **HTML**: [Brief explanation of how it was used]
+- **JavaScript**: [Brief explanation of how it was used]
+- **CSS/Bootstrap**: [Brief explanation of how it was used]
+- **Octopus Energy REST API**: https://docs.octopus.energy/rest/guides/api-basics
+- - **Chatgpt**: Helped structure the should have and could have in the acceptance creiteria.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## Testing
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+### Tools Used
+- **Chrome Dev Tools**: Used for [purpose of the tool].
+- **Google Lighthouse**: Used for [purpose of the tool].
+- **W3C Validator**: Used for [purpose of the tool].
+- **W3C Validator**: Used for [purpose of the tool].
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### Feature Testing
+- [Description of testing process for feature, e.g., navigation, responsiveness].
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+## Deployment
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+The project was deployed using **GitHub Pages** and can be accessed at [Live Link]. Steps taken to deploy:
+1. [Deployment step 1]
+2. [Deployment step 2]
 
-------
+## Reflection on Development Process
 
-## FAQ about the uptime script
+### Successes
+- **[Success 1]**: [Brief description]
+- **[Success 2]**: [Brief description]
 
-**Why have you added this script?**
+### Challenges
+- **[Challenge 1]**: [Brief description of challenge faced]
+- **[Challenge 2]**: [Brief description of challenge faced]
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Final Thoughts
+This project has provided valuable insights into [skills or areas learned], highlighting [strengths of the project]. In the future, I would like to improve on [areas for improvement].
 
-**How will this affect me?**
+## Credits
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+- **[Credit 1]**: [Description of contribution or inspiration source]
+- **[Credit 2]**: [Description of contribution or inspiration source]
+- **[Tools and Resources]**: [Tools used like Google Images for images, Font Awesome for icons, etc.]
