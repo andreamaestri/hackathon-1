@@ -1,6 +1,7 @@
 /** Function to fetch unit rates for electricity from the Octopus Energy API*/ 
-async function fetchUnitRates() {
-    const url = 'https://api.octopus.energy/v1/products/AGILE-24-10-01/electricity-tariffs/E-1R-AGILE-24-10-01-C/standard-unit-rates/';
+// Function to fetch unit rates from Octopus Energy API
+async function fetchUnitRates(periodFrom, periodTo) {
+    const url = `https://api.octopus.energy/v1/products/AGILE-24-10-01/electricity-tariffs/E-1R-AGILE-24-10-01-C/standard-unit-rates/?period_from=${periodFrom}&period_to=${periodTo}`;
 
     try {
         const response = await fetch(url);
@@ -17,6 +18,7 @@ async function fetchUnitRates() {
     }
     return [];
 }
+
 
 // Function to process and format the data for graphing
 async function processUnitRates() {
