@@ -68,9 +68,19 @@
 
 /* Styling the offcanvas */
 .offcanvas-end {
-    background-color: #f8f9fa; /* Set background color */
+    background-color: #7A1CAC; /* for some reason can't override the color (sorted bellow) */
     width: 280px; /* Customize the width */
     transition: transform 0.3s ease-in-out; /* Smooth sliding effect */
+}
+#offcanvasNavbar {
+    background-color: #7A1CAC;
+    color: white;
+    font-family: "montserrat", sans-serif ;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important; /* Example color (Orange) */
+    transition: color 0.3s ease-in-out; /* Smooth transition for color change */
 }
 
 /* When offcanvas is shown */
@@ -82,3 +92,10 @@
 .offcanvas {
     transform: translateX(100%);
 }
+
+/* ------------------------------------------- Background color */
+section {
+    background-color: #7A1CAC ; 
+    min-height: 100vh; 
+}
+
