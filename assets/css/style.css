@@ -158,3 +158,11 @@ body{
         min-height: 100vh;
     }
 
+    /* ------------------------------------------- Graph */
+    
+        @media (max-width: 768px) { /* Adjust the max-width as needed */
+            .graph-card  {
+              display: none;
+            }
+          }
+  
