@@ -10,19 +10,19 @@
   <title>WattsUp</title>
 </head>
 
-<body class="bg-primary">
+<body>
   <!-- Drawer with Navbar -->
-  <div class="drawer">
-    <input id="drawer-navbar" type="checkbox" class="drawer-toggle" />
+  <div class="drawer drawer-end">
+    <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col">
       <!-- Navbar -->
-      <header class="navbar w-full shadow-xl shadow-fuchsia-700/25 text-white">
+      <div class="navbar w-full shadow-xl shadow-fuchsia-700/25 text-white">
         <div class="flex-none 2xl:hidden">
-          <label for="drawer-navbar" aria-label="open sidebar" class="btn btn-square btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-              class="inline-block h-6 w-6 stroke-current">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <label for="my-drawer-4" class="btn btn-square btn-ghost"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            class="inline-block h-6 w-6 stroke-current">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+           
           </label>
         </div>
         <div class="mx-2 flex-1 px-2">
@@ -30,7 +30,7 @@
             <i class="fa-solid fa-bolt"></i> WattsUp
           </a>
         </div>
-        <nav class="hidden flex-none 2xl:block">
+        <div class="hidden flex-none 2xl:block">
           <ul class="menu menu-horizontal">
             <li>
               <a href="#"><i class="fa-solid fa-calendar"></i> Next Day</a>
@@ -42,15 +42,35 @@
               <a href="quiz.html"><i class="fa-solid fa-question-circle"></i>Energy Quiz</a>
             </li>
           </ul>
-        </nav>
-      </header>
+        </div>
+      </div>
+    </div>
+    <div class="drawer-side z-50">
+      <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+      <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+        <li><a href="#">Next Day</a></li>
+        <li><a href="#">Next Week</a></li>
+        <li><a href="quiz.html">Energy Quiz</a></li>
+      </ul>
+    </div>
+  </div>
+      
 
-      <!-- Page Content -->
-      <main>
-        <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+        <div class="drawer-side z-50">
+          <label for="toggle-drawer-nav" aria-label="close sidebar" class="drawer-overlay"></label>
+          <ul class="menu bg-base-200 text-base-content text-3xl min-h-full w-80 p-4">
+            <li><a href="#">Next Day</a></li>
+            <li><a href="#">Next Week</a></li>
+            <li><a href="quiz.html">Energy Quiz</a></li>
+          </ul>
+        </div>
+
+
+        
+        <div class="mx-auto h-lvh p-4 md:p-6 2xl:p-5">
           <div class="flex flex-wrap gap-4 md:gap-6 2xl:gap-7.5">
             <!-- Card for Current Time -->
-            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+            <div class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl">
               <div
                 class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
                 <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">Current Time</p>
@@ -77,30 +97,32 @@
             </div>
 
             <!-- Card for Current Rate -->
-            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+            <div class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl">
               <div
                 class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
-                <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">12:00-12:30</p>
+                <p id="timeNowEl" class="mt-1 text-[#EBD3F8] font-semibold uppercase">12:00-12:30</p>
               </div>
               <div class="p-4 md:p-5">
-                <h3 class="text-5xl text-white font-bold">19.53p</h3>
+                <h3 id="rateNowEl" class="text-5xl text-white font-bold">19.53p</h3>
               </div>
             </div>
-            <!-- Card for Plunge Pricing -->
-            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+
+            <!-- Card for Next Rate -->
+            <div class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl">
               <div
                 class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
-                <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">00:30-07:30</p>
+                <p id="timeNextEl" class="mt-1 text-[#EBD3F8] font-semibold uppercase">00:30-07:30</p>
               </div>
               <div class="p-4 md:p-5">
-                <h3 class="text-5xl text-white">
+                <h3 id="rateNextEl" class="text-5xl text-white">
                   <span class="font-bold dark:text-white">-1.15p</span>
                 </h3>
-                <p class="mt-2 dark:text-neutral-400">Plunge Pricing: -1.15p</p>
+                <p id="trendEl" class="mt-2 dark:text-neutral-400">Plunge Pricing: -1.15p</p>
               </div>
             </div>
+
             <!-- Card for Laundry -->
-            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+            <div class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl">
               <div
                 class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
                 <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">14:00-15:30</p>
@@ -110,8 +132,9 @@
                 <p class="mt-2 dark:text-neutral-400">(9.81/kWh)</p>
               </div>
             </div>
+
             <!-- Card for High Usage Warning -->
-            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+            <div class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl">
               <div
                 class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
                 <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">16:00-19:30</p>
@@ -121,40 +144,30 @@
                 <p class="mt-2 text-white">Don't use too much energy during this time!</p>
               </div>
             </div>
-          </div>
-        </div>
-      </main>
 
+            <!-- Card for Energy Daily Import Tariff -->
+            <div class="flex-grow flex flex-col custom-card rounded-xl">
+              <!-- Card body with chart content -->
+              <div class="relative w-full h-96">
+                <!-- Custom information -->
+                <div class="about p-5 text-white font-bold text-xl">
+                  <h3>Octopus Agile Tariff</h3>
+                </div>
 
-      <!-- Graph section (70% width) -->
-      <div class="mt-8">
-        <div class="px-7.5 py-6">
-          <div class="card-body">
-            <h2 class="card-title">Energy Usage Chart</h2>
-            <div>
-              <canvas id="myChart" height="400"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
+                <!-- Canvas for Chart.js -->
+                <canvas id="myChart" class="z-10 absolute inset-0 bottom-0 w-full h-full"></canvas>
 
-      <!-- Drawer Sidebar -->
-      <aside class="drawer-side">
-        <label for="drawer-navbar" aria-label="close sidebar" class="drawer-overlay"></label>
-        <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-          <li><a href="#">Next Day</a></li>
-          <li><a href="#">Next Week</a></li>
-          <li><a href="quiz.html">Energy Quiz</a></li>
-        </ul>
-      </aside>
-    </div>
+                <!-- Custom Axis -->
+                <div class="z-0 axis inset-x-0 bottom-0 w-full h-full" id="customAxis"></div>
+              </div>
 
-    <script src="https://kit.fontawesome.com/692d2cc607.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="assets/js/script-for-graph.js"></script>
+           
 
-    <script src="assets/js/script.js"></script>
-
+         
+            <script src="https://kit.fontawesome.com/692d2cc607.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="assets/js/script-for-graph.js"></script>
+            <script src="assets/js/script.js"></script>
 </body>
 
 </html>

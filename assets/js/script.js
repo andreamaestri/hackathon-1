@@ -31,10 +31,9 @@ fetch(apiUrl)
       let nextResult = data.results[0];
 
       // Extract the current rate and display it
-
       currentRate = parseFloat(currentResult.value_inc_vat).toFixed(2) + "p";
       console.log("Current rate (including VAT):", currentRate);
-      rateNowEl.innerText = currentRate;
+      document.getElementById("rateNowEl").innerText = currentRate;
 
       // Extract validFrom and validTo
       let validFrom = new Date(currentResult.valid_from);
@@ -43,12 +42,12 @@ fetch(apiUrl)
       // Format and display the time slot
       let currentSlot = timeSlot(validFrom, validTo);
       console.log("The current slot now is: " + currentSlot);
-      timeNowEl.innerText = currentSlot;
+      document.getElementById("timeNowEl").innerText = currentSlot;
 
       // Extract next rate and time slot
       let nextRate = parseFloat(nextResult.value_inc_vat).toFixed(2) + "p";
       console.log("Next rate (including VAT):", nextRate);
-      rateNextEl.innerText = nextRate;
+      document.getElementById("rateNextEl").innerText = nextRate;
 
       // Extract validFrom and validTo for next time slot
       let validFromNext = new Date(nextResult.valid_from);
@@ -57,7 +56,8 @@ fetch(apiUrl)
       // Display the next time slot
       let nextSlot = timeSlot(validFromNext, validToNext);
       console.log("The next slot is: " + nextSlot);
-      timeNextEl.innerText = nextSlot;
+      document.getElementById("timeNextEl").innerText = nextSlot;
+
       // Calculate trend and apply dynamic color
       let rateChange =
         ((parseFloat(nextResult.value_inc_vat) -
@@ -67,15 +67,15 @@ fetch(apiUrl)
       let trendArrow = rateChange > 0 ? "↗︎" : "↘︎";
       let trendText = `${trendArrow} ${Math.abs(rateChange).toFixed(2)}%`;
       // Update next rate with trend
-      trendEl.innerText = `${trendText}`;
+      document.getElementById("trendEl").innerText = `${trendText}`;
 
       // Apply text color class dynamically
       if (rateChange < 0) {
-        trendEl.classList.add("text-violet-500"); // Cheaper
-        trendEl.classList.remove("text-pink-600");
+        document.getElementById("trendEl").classList.add("text-violet-500"); // Cheaper
+        document.getElementById("trendEl").classList.remove("text-pink-600");
       } else {
-        trendEl.classList.add("text-pink-600"); // More expensive
-        trendEl.classList.remove("text-violet-500");
+        document.getElementById("trendEl").classList.add("text-pink-600"); // More expensive
+        document.getElementById("trendEl").classList.remove("text-violet-500");
       }
     } else {
       console.log("No results found.");
@@ -132,6 +132,11 @@ fetch(dayApiUrl)
       top3Cheapest.forEach((slot, index) => {
         console.log(`Top ${index + 1} Cheapest Time Slot: "${timeSlot(slot.dayRateValidFrom, slot.dayRateValidTo)}" at ${slot.dayRatePrice.toFixed(2)}p`);
       });
+
+      // Calculate average cycle cost for laundry machine (2100W)
+      let averageCycleCost = (2100 / 1000) * top3Cheapest[0].dayRatePrice;
+      document.querySelector(".card:nth-child(4) h3").innerText = `Laundry: ${averageCycleCost.toFixed(2)}p`;
+      document.querySelector(".card:nth-child(4) p").innerText = `(${(averageCycleCost / 2.1).toFixed(2)}/kWh)`;
     } else {
       console.log("No results found.");
     }
@@ -139,7 +144,6 @@ fetch(dayApiUrl)
   .catch((error) => {
     console.error("There was a problem with the fetch operation:", error);
   });
-
 
 // Function to format the time slot
 function timeSlot(validFrom, validTo) {

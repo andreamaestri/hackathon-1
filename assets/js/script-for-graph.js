@@ -1,28 +1,37 @@
 async function fetchUnitRates(periodFrom, periodTo) {
     const url = `https://api.octopus.energy/v1/products/AGILE-24-10-01/electricity-tariffs/E-1R-AGILE-24-10-01-C/standard-unit-rates/?period_from=${periodFrom}&period_to=${periodTo}`;
+    
+    console.log(`Fetching data from URL: ${url}`); // Log the API URL
 
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data = await response.json();
-        console.log(data); // Log the entire response to ensure you're receiving data
-        return data.results || []; // Return the list of unit rates or empty array if undefined
+        return data.results || [];
     } catch (error) {
         console.error('Error fetching data:', error);
-        return []; // Return empty array on error
+        return [];
     }
 }
 
 function getCurrentDateRange() {
     const now = new Date();
-    const periodFrom = new Date(now.setUTCHours(0, 0, 0, 0)); // Today at midnight UTC
-    const periodTo = new Date(periodFrom);
-    periodTo.setUTCDate(periodTo.getUTCDate() + 1); // Tomorrow at midnight UTC
-
+    const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let endOfDay;
+    if (now.getHours() < 16) {
+        endOfDay = new Date(startOfDay.getTime() + 22.5 * 60 * 60 * 1000); // Until 22:30 if before 4pm
+    } else {
+        endOfDay = new Date(startOfDay.getTime() + 48 * 60 * 60 * 1000 - 1); // End of the next day
+    }
     return {
-        periodFrom: periodFrom.toISOString(),
-        periodTo: periodTo.toISOString(),
+        periodFrom: startOfDay.toISOString(),
+        periodTo: endOfDay.toISOString(),
     };
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' });
 }
 
 async function processUnitRates() {
@@ -31,75 +40,137 @@ async function processUnitRates() {
 
     if (!ratesData.length) {
         console.log("No data received from the API");
-        return; // Exit if no data is returned
+        return;
     }
 
-    const timeLabels = ratesData.map(rate => new Date(rate.valid_from).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const unitRates = ratesData.map(rate => rate.value_inc_vat); // Use the rate including VAT
+    // Filter out past data
+    const now = new Date();
+    const futureRatesData = ratesData.filter(rate => new Date(rate.valid_from) > now);
 
-    plotGraph(timeLabels, unitRates);
+    if (!futureRatesData.length) {
+        console.log("No future data available");
+        return;
+    }
+
+    // Sort futureRatesData by valid_from date
+    futureRatesData.sort((a, b) => new Date(a.valid_from) - new Date(b.valid_from));
+
+    futureRatesData.forEach(rate => {
+        console.log(`Date: ${rate.valid_from}, Unit Rate: ${rate.value_inc_vat}`); // Log each unit rate and its date
+    });
+
+    const timeLabels = futureRatesData.map(rate => new Date(rate.valid_from).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    const unitRates = futureRatesData.map(rate => rate.value_inc_vat);
+    const formattedDates = futureRatesData.map(rate => formatDate(rate.valid_from));
+
+    plotGraph(timeLabels, unitRates, formattedDates);
+    updateCustomAxis(futureRatesData);
+    updateClockWithRateTime(futureRatesData[0]);
 }
 
-function plotGraph(timeLabels, unitRates) {
-    const ctx = document.getElementById('myChart').getContext('2d');
+function plotGraph(timeLabels, unitRates, formattedDates) {
+    const canvas = document.getElementById('myChart');
+    const ctx = canvas.getContext('2d');
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, 450);
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)'); //
+
     new Chart(ctx, {
         type: 'line',
         data: {
             labels: timeLabels,
             datasets: [{
-                label: 'Unit Rate (pence per kWh)',
+                label: `Unit Rate (pence per kWh)`,
                 data: unitRates,
-                backgroundColor: 'rgba(167,254,237,0.5)', // Light version of the last color
-                borderColor: '#0B666A', // Main line color
-                borderWidth: 2, // Thicker line for better visibility
-                fill: true, // Fill area under the line for a more pronounced effect
-                pointBackgroundColor: '#35A29F', // Point color for data points
-                pointBorderColor: '#071952', // Border color for points
-                pointBorderWidth: 2,
-                pointRadius: 4, // Size of the points
-                tension: 0.3 // Smooth the line
+                backgroundColor: gradient,
+                borderColor: 'rgba(255, 255, 255, 0.2)',
+                borderWidth: 2,
+                pointBackgroundColor: 'transparent',
+                pointBorderColor: '#FFFFFF',
+                pointBorderWidth: 3,
+                pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                pointHoverBorderWidth: 10,
+                fill: true,
+                tension: 0
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            elements: {
+                point: {
+                    radius: 6,
+                    hitRadius: 6,
+                    hoverRadius: 6
+                }
+            },
             scales: {
                 x: {
-                    title: { display: true, text: 'Time', color: '#FFF', font: { weight: 'bold' } },
-                    grid: { color: '#FFF', lineWidth: 1 }, // Grid color for x-axis
-                    reverse: true, // Reversing the x-axis
-                    ticks: {
-                        color: '#FFF'
-                    }
+                    display: false
                 },
                 y: {
-                    title: { display: true, text: 'Cost (pence per kWh)', color: '#FFF', font: { weight: 'bold' } },
-                    grid: { color: '#FFF', lineWidth: 1 }, // Grid color for y-axis
-                    beginAtZero: false,
+                    display: false,
                     ticks: {
-                        color: '#FFF', // Color for y-axis ticks
+                        beginAtZero: true
                     }
                 }
             },
             plugins: {
                 legend: {
-                    labels: {
-                        color: '#FFF', // Color for legend labels
-                        font: {
-                            weight: 'bold' // Bold legend labels
-                        }
-                    }
+                    display: false
                 },
                 tooltip: {
-                    backgroundColor: '#AD49E1', // Tooltip background color
-                    titleColor: '#FFFFFF', // Tooltip title color
-                    bodyColor: '#FFFFFF', // Tooltip body text color
-                    borderColor: '#AD49E1', // Tooltip border color
-                    borderWidth: 1
+                    backgroundColor: 'transparent',
+                    displayColors: false,
+                    bodyFontSize: 16,
+                    callbacks: {
+                        label: function(tooltipItems) {
+                            return `${tooltipItems.raw.toFixed(2)} p/kWh - ${formattedDates[tooltipItems.dataIndex]}`;
+                        }
+                    }
                 }
             }
         }
     });
+}
+
+function updateCustomAxis(ratesData) {
+    const customAxis = document.getElementById('customAxis');
+    customAxis.innerHTML = '';
+
+    ratesData.forEach(rate => {
+        const tick = document.createElement('div');
+        tick.className = 'tick';
+
+        const value = document.createElement('span');
+        value.className = 'value value--this';
+        value.textContent = `${rate.value_inc_vat.toFixed(2)}p`;
+
+        const time = document.createElement('span');
+        time.className = 'time';
+        time.textContent = new Date(rate.valid_from).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        tick.appendChild(time);
+        tick.appendChild(value);
+        customAxis.appendChild(tick);
+    });
+}
+
+function formatTimeFromDate(dateString) {
+    const date = new Date(dateString);
+    return {
+        hours: String(date.getHours()).padStart(2, "0"),
+        minutes: String(date.getMinutes()).padStart(2, "0"),
+        seconds: String(date.getSeconds()).padStart(2, "0")
+    };
+}
+
+function updateClockWithRateTime(rate) {
+    const { hours, minutes, seconds } = formatTimeFromDate(rate.valid_from);
+    document.getElementById("hours").style.setProperty("--value", hours);
+    document.getElementById("minutes").style.setProperty("--value", minutes);
+    document.getElementById("seconds").style.setProperty("--value", seconds);
 }
 
 processUnitRates();
