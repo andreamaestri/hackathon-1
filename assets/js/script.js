@@ -102,69 +102,36 @@ let dayPeriodFrom = startOfDay.toISOString();
 let dayPeriodTo = endOfDay.toISOString();
 
 let dayApiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${dayPeriodFrom}&period_to=${dayPeriodTo}`;
-
-//Fetch 1-Day API Data
-
+// Fetch 1-Day API Data
 let dayRate = [];
-let longestSlots = [];
-let currentSlots = [];
-const jumpThreshold = 0.1;
-let results = [];
+
 fetch(dayApiUrl)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  })
+  .then((response) => response.json())
   .then((data) => {
     if (data.results && data.results.length > 0) {
-      // Loop through each result and populate dayRate
-      data.results.forEach((result) => {
+      // Filter results for future time slots
+      let filteredResults = data.results.filter((result) => {
+        let validFrom = new Date(result.valid_from);
+        return validFrom >= now; // Only keep future time slots
+      });
+
+      // Store valid rates in dayRate array
+      filteredResults.forEach((result) => {
         let dayRatePrice = parseFloat(result.value_inc_vat);
         let dayRateValidFrom = new Date(result.valid_from);
         let dayRateValidTo = new Date(result.valid_to);
-
-        // Push the rate to the dayRate array
         dayRate.push({ dayRatePrice, dayRateValidFrom, dayRateValidTo });
       });
 
-      // Start with the first slot
-      currentSlots.push(dayRate[0]);
+      // Sort by price
+      dayRate.sort((a, b) => a.dayRatePrice - b.dayRatePrice);
 
-      for (let i = 1; i < dayRate.length; i++) {
-        const currentSlot = dayRate[i];
-        const previousSlot = dayRate[i - 1];
+      // Get top 3 cheapest slots
+      let top3Cheapest = dayRate.slice(0, 3);
 
-        // Check price difference with the threshold
-        if (
-          Math.abs(currentSlot.dayRatePrice - previousSlot.dayRatePrice) <=
-          jumpThreshold * previousSlot.dayRatePrice
-        ) {
-          currentSlots.push(currentSlot);
-        } else {
-          // Store the time slot for the previous sequence
-          if (currentSlots.length > 0) {
-            results.push(
-              timeSlot(
-                new Date(currentSlots[0].dayRateValidFrom),
-                new Date(currentSlots[currentSlots.length - 1].dayRateValidTo)
-              )
-            );
-          }
-          currentSlots = [currentSlot];
-        }
-      }
-
-      // Check for any remaining slots after the loop
-      if (currentSlots.length > 0) {
-        results.push(
-          timeSlot(
-            new Date(currentSlots[0].dayRateValidFrom),
-            new Date(currentSlots[currentSlots.length - 1].dayRateValidTo)
-          )
-        );
-      }
+      top3Cheapest.forEach((slot, index) => {
+        console.log(`Top ${index + 1} Cheapest Time Slot: "${timeSlot(slot.dayRateValidFrom, slot.dayRateValidTo)}" at ${slot.dayRatePrice.toFixed(2)}p`);
+      });
     } else {
       console.log("No results found.");
     }
@@ -173,21 +140,20 @@ fetch(dayApiUrl)
     console.error("There was a problem with the fetch operation:", error);
   });
 
+
 // Function to format the time slot
 function timeSlot(validFrom, validTo) {
-  let hour = validFrom.getHours();
-  let minute = validFrom.getMinutes();
-  let hourNext = validTo.getHours();
-  let minuteNext = validTo.getMinutes();
+  let hour = validFrom.getUTCHours();
+  let minute = validFrom.getUTCMinutes();
+  let hourNext = validTo.getUTCHours();
+  let minuteNext = validTo.getUTCMinutes();
 
-  return `${hour}:${minute
-    .toString()
-    .padStart(2, "0")} - ${hourNext}:${minuteNext.toString().padStart(2, "0")}`;
+  // Ensure validTo is at least one minute after validFrom
+  if (hour === hourNext && minute === minuteNext) {
+    validTo.setUTCMinutes(validTo.getUTCMinutes() + 1);
+    hourNext = validTo.getUTCHours();
+    minuteNext = validTo.getUTCMinutes();
+  }
+
+  return `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")} - ${hourNext.toString().padStart(2, "0")}:${minuteNext.toString().padStart(2, "0")}`;
 }
-
-let timeNowEl = document.getElementById("time-el-now");
-let rateNowEl = document.getElementById("rate-el-now");
-
-let timeNextEl = document.getElementById("time-el-next");
-let rateNextEl = document.getElementById("rate-el-next");
-let trendEl = document.getElementById("trend-el");
