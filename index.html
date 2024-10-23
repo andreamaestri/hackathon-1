@@ -18,126 +18,119 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>WattsUp</title>
   </head>
-  <body>
-    <header>
-      <!-------------------------------------------------------------------------------------------Navbar-->
-      <nav id="navBar" class="navbar fixed-top">
-        <div class="container-fluid">
-          <a id="logo" class="navbar-brand" href="#">
-            <i class="fa-solid fa-bolt"></i> WattsUp</a
-          >
-          <!-- Toggle button for small screens -->
-          <button
-            class="navbar-toggler d-block d-md-none"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-            aria-label="Toggle navigation"
-          >
-            <span class="toggler-icon top-bar"></span>
-            <span class="toggler-icon middle-bar"></span>
-            <span class="toggler-icon bottom-bar"></span>
-          </button>
-
-          <!-- Navigation Links for Larger Screens (md and up) -->
-          <div class="d-none d-md-flex flex-row gap-4 align-items-center">
-            <!-- No need for ul/li, just flex items directly -->
-            <a class="nav-link active" aria-current="page" href="#">Next Day</a>
-            <a class="nav-link active" href="quiz.html">Energy Quiz</a>
-          </div>
-          <!-- Offcanvas menu for smaller screens -->
-          <div
-            class="offcanvas offcanvas-end"
-            tabindex="-1"
-            id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel"
-          >
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                Forecast
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="hidden lg:flex">
-              <a class="btn btn-ghost btn-sm rounded-btn text-white" href="#">
-                Next Day
-              </a>
-              <a class="btn btn-ghost btn-sm rounded-btn text-white" href="#">
-                Next Week
-              </a>
-            </div>
-          </div>
-        </nav>
-
-        <!-- Cards -->
-        <section class="p-6">
-          <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-            <div
-              id="time-el-now"
-              class="card shadow-lg bg-violet-700 text-white"
+  <body class="bg-gray-100">
+    <!-- Drawer with Navbar -->
+    <div class="drawer">
+      <input id="drawer-navbar" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex flex-col">
+        <!-- Navbar -->
+        <div class="navbar w-full text-white">
+          <div class="flex-none lg:hidden">
+            <label
+              for="drawer-navbar"
+              aria-label="open sidebar"
+              class="btn btn-square btn-ghost"
             >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="inline-block h-6 w-6 stroke-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </label>
+          </div>
+          <div class="mx-2 flex-1 px-2">
+            <a
+              id="logo"
+              class="btn btn-ghost normal-case text-xl"
+              href="index.html"
+            >
+              <i class="fa-solid fa-bolt"></i> WattsUp
+            </a>
+          </div>
+          <div class="hidden flex-none lg:block">
+            <ul class="menu menu-horizontal">
+              <li>
+                <a href="#"><i class="fa-solid fa-calendar"></i> Next Day</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa-solid fa-cog"></i> Settings</a>
+              </li>
+              <li>
+                <a href="quiz.html"
+                  ><i class="fa-solid fa-question-circle"></i>Energy Quiz</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Page Content -->
+        <section class="p-6">
+          <div class="flex flex-wrap justify-around">
+            <!-- Card for Current Rate -->
+            <div class="card bg-base-100 shadow-xl">
               <div class="card-body">
                 <h2 class="card-title">12:00-12:30</h2>
                 <p class="text-4xl">19.53p</p>
               </div>
             </div>
-
-            <div
-              id="time-el-next"
-              class="card shadow-lg bg-violet-700 text-white"
-            >
+            <div class="card bg-base-100 shadow-xl">
               <div class="card-body">
                 <h2 class="card-title">00:30-07:30</h2>
                 <p class="text-4xl">Plunge Pricing: -1.15p</p>
               </div>
             </div>
-
-            <div
-              id="rate-el-next"
-              class="card shadow-lg bg-violet-700 text-white"
-            >
+        
+            <!-- Cards for Upcoming Rates -->
+            <div class="card bg-base-100 shadow-xl">
               <div class="card-body">
                 <h2 class="card-title">14:00-15:30</h2>
                 <p class="text-4xl">Laundry: 28p</p>
                 <p>(9.81/kWh)</p>
               </div>
             </div>
-
-            <div class="card shadow-lg bg-violet-700 text-white">
+            <div class="card bg-base-100 shadow-xl">
               <div class="card-body">
                 <h2 class="card-title">16:00-19:30</h2>
-                <p class="text-xl">
-                  Don't use too much energy during this time!
-                </p>
+                <p class="text-xl">Don't use too much energy during this time!</p>
                 <p class="text-4xl">45.7p</p>
               </div>
             </div>
           </div>
+        </section>        
+
+        <!-- Chart Section -->
+        <section>
+          <div class="mx-auto w-4/5 my-8">
+            <canvas id="myChart" height="300"></canvas>
+          </div>
         </section>
       </div>
 
+      <!-- Drawer Sidebar -->
       <div class="drawer-side">
-        <label for="my-drawer-3" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-80 bg-base-100">
+        <label
+          for="drawer-navbar"
+          aria-label="close sidebar"
+          class="drawer-overlay"
+        ></label>
+        <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <li><a href="#">Next Day</a></li>
           <li><a href="#">Next Week</a></li>
+          <li><a href="quiz.html">Energy Quiz</a></li>
         </ul>
       </div>
-      <section>
-        <!--------------------html for chart-->
-        <div style="width: 80%; margin: auto">
-          <canvas id="myChart" height="300"></canvas>
-          <!-- Canvas element for the chart -->
-        </div>
-        <!--------------------html for chart-->
-      </section>
     </div>
+
     <script
       src="https://kit.fontawesome.com/692d2cc607.js"
       crossorigin="anonymous"

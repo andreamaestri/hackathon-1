@@ -3,6 +3,10 @@ const now = new Date();
 const next = new Date(now);
 next.setMinutes(now.getMinutes() + 60);
 
+//Day Parameters
+const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); 
+
 let periodFrom = now.toISOString();
 let periodTo = next.toISOString();
 
@@ -12,7 +16,7 @@ let tariffCode = "E-1R-AGILE-24-10-01-L";
 let currentRate;
 
 // Define API Endpoint URL using backticks for template literals
-let apiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${periodFrom}&period_to=${periodTo}`;
+let apiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${periodFrom}Z&period_to=${periodTo}Z`;
 
 console.log(apiUrl); // Outputs the correct URL
 console.log(periodFrom); // Logs 'period_from' (now)
@@ -84,6 +88,12 @@ fetch(apiUrl)
   .catch((error) => {
     console.error("Error:", error);
   });
+
+// Retrieve 1-Day JSON request
+let dayPeriodFrom = startOfDay.toISOString();
+let dayPeriodTo = endOfDay.toISOString();
+
+let dayApiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${dayPeriodFrom}Z&period_to=${dayPeriodTo}Z`;
 
 // Function to format the time slot
 function timeSlot(validFrom, validTo) {
