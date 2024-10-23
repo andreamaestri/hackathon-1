@@ -93,7 +93,30 @@ fetch(apiUrl)
 let dayPeriodFrom = startOfDay.toISOString();
 let dayPeriodTo = endOfDay.toISOString();
 
+let dayRate = [];
+
 let dayApiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${dayPeriodFrom}Z&period_to=${dayPeriodTo}Z`;
+
+//Fetch 1-Day API Data
+
+fetch(dayApiUrl)
+.then((response) => {
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+})
+.then((data) => {
+  if (data.results && data.results.length > 0) {
+    let dayRatePrice = parseFloat(result.value_inc_vat);
+    let dayRateValidFrom = new Date(result.valid_from);
+    let dayRateValidTo = new Date(result.valid_to);
+
+    dayRate.push({ dayRatePrice,dayRateValidFrom, dayRateValidTo });
+  }
+});
+
+//Sorting cheapest dayPrice
 
 // Function to format the time slot
 function timeSlot(validFrom, validTo) {
