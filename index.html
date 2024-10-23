@@ -9,134 +9,121 @@
       rel="stylesheet"
       type="text/css"
     />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"
+      integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <link rel="stylesheet" href="assets/css/style.css" />
-    <title>WattUp</title>
+    <title>WattsUp</title>
   </head>
   <body>
-    <div class="drawer">
+    <div class="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <!-- Navbar -->
-        <div class="navbar bg-violet-950 text-xl w-full">
-          <div class="flex-none">
-            <label
-              for="my-drawer-3"
-              aria-label="open sidebar"
-              class="btn btn-square btn-ghost"
+        <nav class="navbar navbar-custom text-white">
+          <div class="container-fluid">
+            <a id="logo" class="text-white text-2xl flex items-center" href="#">
+              <i class="fa-solid fa-bolt mr-2"></i> WattsUp
+            </a>
+            <div class="flex-none lg:hidden">
+              <label for="my-drawer-3" class="btn btn-square btn-ghost">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  class="inline-block w-6 h-6 stroke-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
+            </div>
+            <div class="hidden lg:flex">
+              <a class="btn btn-ghost btn-sm rounded-btn text-white" href="#">
+                Next Day
+              </a>
+              <a class="btn btn-ghost btn-sm rounded-btn text-white" href="#">
+                Next Week
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Cards -->
+        <section class="p-6">
+          <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            <div
+              id="time-el-now"
+              class="card shadow-lg bg-violet-700 text-white"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                class="inline-block h-6 w-6 stroke-current"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </label>
-          </div>
-          <div class="mx-2 flex-1 px-2">WattUp</div>
-        </div>
-        <!-- Page content here -->
-        <section>
-          <div class="m-5 stats bg-violet-700 text-primary-content">
-            <div class="stat">
-              <div class="stat-title text-white" id="time-el-now">
-                00:00 - 00:00
+              <div class="card-body">
+                <h2 class="card-title">12:00-12:30</h2>
+                <p class="text-4xl">19.53p</p>
               </div>
-              <div class="stat-value" id="rate-el-now">0.000p</div>
             </div>
 
-            <div class="stat">
-              <div class="stat-title text-white opacity-75"id="time-el-next">00:00 - 00:00</div>
-              <div class="stat-value text-black opacity-75" id="rate-el-next">00.00p</div>
-              <div class="stat-desc font-black font-sans opacity-75" id="trend-el">Upcoming rate:</div>
-            </div>
-          </div>
-          <div class="m-5 stats shadow">
-            <div class="stat">
-              <div class="stat-figure text-secondary">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  class="inline-block h-8 w-8 stroke-current"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
+            <div
+              id="time-el-next"
+              class="card shadow-lg bg-violet-700 text-white"
+            >
+              <div class="card-body">
+                <h2 class="card-title">00:30-07:30</h2>
+                <p class="text-4xl">Plunge Pricing: -1.15p</p>
               </div>
-              <div class="stat-title">Downloads</div>
-              <div class="stat-value">31K</div>
-              <div class="stat-desc">Jan 1st - Feb 1st</div>
             </div>
 
-            <div class="stat">
-              <div class="stat-figure text-secondary">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  class="inline-block h-8 w-8 stroke-current"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                  ></path>
-                </svg>
+            <div
+              id="rate-el-next"
+              class="card shadow-lg bg-violet-700 text-white"
+            >
+              <div class="card-body">
+                <h2 class="card-title">14:00-15:30</h2>
+                <p class="text-4xl">Laundry: 28p</p>
+                <p>(9.81/kWh)</p>
               </div>
-              <div class="stat-title">New Users</div>
-              <div class="stat-value">4,200</div>
-              <div class="stat-desc">↗︎ 400 (22%)</div>
             </div>
 
-            <div class="stat">
-              <div class="stat-figure text-secondary">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  class="inline-block h-8 w-8 stroke-current"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-                  ></path>
-                </svg>
+            <div class="card shadow-lg bg-violet-700 text-white">
+              <div class="card-body">
+                <h2 class="card-title">16:00-19:30</h2>
+                <p class="text-xl">
+                  Don't use too much energy during this time!
+                </p>
+                <p class="text-4xl">45.7p</p>
               </div>
-              <div class="stat-title">New Registers</div>
-              <div class="stat-value">1,200</div>
-              <div class="stat-desc">↘︎ 90 (14%)</div>
             </div>
           </div>
         </section>
       </div>
 
       <div class="drawer-side">
-        <label
-          for="my-drawer-3"
-          aria-label="close sidebar"
-          class="drawer-overlay"
-        ></label>
-        <ul class="menu bg-base-200 min-h-full w-80 p-4">
-          <!-- Sidebar content here -->
-          <li><a>Sidebar Item 1</a></li>
-          <li><a>Sidebar Item 2</a></li>
+        <label for="my-drawer-3" class="drawer-overlay"></label>
+        <ul class="menu p-4 w-80 bg-base-100">
+          <li><a href="#">Next Day</a></li>
+          <li><a href="#">Next Week</a></li>
         </ul>
       </div>
+      <section>
+        <!--------------------html for chart-->
+        <div style="width: 80%; margin: auto">
+          <canvas id="myChart" height="300"></canvas>
+          <!-- Canvas element for the chart -->
+        </div>
+        <!--------------------html for chart-->
+      </section>
     </div>
+    <script
+      src="https://kit.fontawesome.com/692d2cc607.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/script-for-graph.js"></script>
   </body>
 </html>
