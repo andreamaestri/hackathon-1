@@ -50,7 +50,7 @@ function plotGraph(timeLabels, unitRates) {
             datasets: [{
                 label: 'Unit Rate (pence per kWh)',
                 data: unitRates,
-                backgroundColor: 'rgba(167,254,237,0.4)', // Light version of the last color
+                backgroundColor: 'rgba(167,254,237,0.5)', // Light version of the last color
                 borderColor: '#0B666A', // Main line color
                 borderWidth: 2, // Thicker line for better visibility
                 fill: true, // Fill area under the line for a more pronounced effect
@@ -66,30 +66,33 @@ function plotGraph(timeLabels, unitRates) {
             maintainAspectRatio: false,
             scales: {
                 x: {
-                    title: { display: true, text: 'Time', color: '#2E073F', font: { weight: 'bold' } },
-                    grid: { color: '#071952', lineWidth: 1 }, // Grid color for x-axis
-                    reverse: true // Reversing the x-axis
+                    title: { display: true, text: 'Time', color: '#FFF', font: { weight: 'bold' } },
+                    grid: { color: '#FFF', lineWidth: 1 }, // Grid color for x-axis
+                    reverse: true, // Reversing the x-axis
+                    ticks: {
+                        color: '#FFF'
+                    }
                 },
                 y: {
-                    title: { display: true, text: 'Cost (pence per kWh)', color: '#2E073F', font: { weight: 'bold' } },
-                    grid: { color: '#071952', lineWidth: 1 }, // Grid color for y-axis
+                    title: { display: true, text: 'Cost (pence per kWh)', color: '#FFF', font: { weight: 'bold' } },
+                    grid: { color: '#FFF', lineWidth: 1 }, // Grid color for y-axis
                     beginAtZero: false,
                     ticks: {
-                        color: '#2E073F', // Color for y-axis ticks
+                        color: '#FFF', // Color for y-axis ticks
                     }
                 }
             },
             plugins: {
                 legend: {
                     labels: {
-                        color: '#2E073F', // Color for legend labels
+                        color: '#FFF', // Color for legend labels
                         font: {
                             weight: 'bold' // Bold legend labels
                         }
                     }
                 },
                 tooltip: {
-                    backgroundColor: '#7A1CAC', // Tooltip background color
+                    backgroundColor: '#AD49E1', // Tooltip background color
                     titleColor: '#FFFFFF', // Tooltip title color
                     bodyColor: '#FFFFFF', // Tooltip body text color
                     borderColor: '#AD49E1', // Tooltip border color
