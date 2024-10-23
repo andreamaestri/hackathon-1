@@ -257,3 +257,14 @@ background: #7A1CAC;
 color: white;
 }
 
+#next-button {
+    background: #AD49E1;
+    color: #2E073F;
+    font-weight: 500;
+    width: 150px;
+    border: 0;
+    padding: 10px;
+    margin: 20px auto 0;
+    border-radius: 3px;
+    cursor: pointer;
+}
