@@ -5,13 +5,13 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #7a1cac;
+    background-color: #7A1CAC;
     font-family: "Montserrat", sans-serif;
 }
 .bg-primary {
-    background-color: #7a1cac;
+    background-color: #7A1CAC;
 }
-.navbar {
+.navbar, .bg-card  {
     background-color: #2e073f;
 }
 

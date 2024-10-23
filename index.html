@@ -1,130 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.13/dist/full.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <title>WattsUp</title>
-  </head>
-  <body class="bg-gray-100">
-    <!-- Drawer with Navbar -->
-    <div class="drawer">
-      <input id="drawer-navbar" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content flex flex-col">
-        <!-- Navbar -->
-        <header class="navbar w-full text-white">
-          <div class="flex-none lg:hidden">
-            <label
-              for="drawer-navbar"
-              aria-label="open sidebar"
-              class="btn btn-square btn-ghost"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="inline-block h-6 w-6 stroke-current"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </label>
-          </div>
-          <div class="mx-2 flex-1 px-2">
-            <a
-              id="logo"
-              class="btn btn-ghost normal-case text-3xl"
-              href="index.html"
-            >
-              <i class="fa-solid fa-bolt"></i> WattsUp
-            </a>
-          </div>
-          <nav class="hidden flex-none lg:block">
-            <ul class="menu menu-horizontal">
-              <li>
-                <a href="#"><i class="fa-solid fa-calendar"></i> Next Day</a>
-              </li>
-              <li>
-                <a href="#"><i class="fa-solid fa-cog"></i> Settings</a>
-              </li>
-              <li>
-                <a href="quiz.html"
-                  ><i class="fa-solid fa-question-circle"></i>Energy Quiz</a
-                >
-              </li>
-            </ul>
-          </nav>
-        </header>
 
-        <!-- Page Content -->
-        <main>
-          <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-            <div
-              class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5"
-            >
-              <!-- Card for Current Rate -->
-              <div class="card shadow-xl px-7.5 py-6">
-          <div class="card-body">
-            <h2 class="card-title">12:00-12:30</h2>
-            <p class="text-4xl">19.53p</p>
-          </div>
-              </div>
-              <div class="card shadow-xl px-7.5 py-6">
-          <div class="card-body">
-            <h2 class="card-title">00:30-07:30</h2>
-            <p class="text-4xl">Plunge Pricing: -1.15p</p>
-          </div>
-              </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.13/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>WattsUp</title>
+</head>
 
-              <!-- Cards for Upcoming Rates -->
-              <div class="card shadow-xl px-7.5 py-6">
-          <div class="card-body">
-            <h2 class="card-title">14:00-15:30</h2>
-            <p class="text-4xl">Laundry: 28p</p>
-            <p>(9.81/kWh)</p>
-          </div>
+<body class="bg-primary">
+  <!-- Drawer with Navbar -->
+  <div class="drawer">
+    <input id="drawer-navbar" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content flex flex-col">
+      <!-- Navbar -->
+      <header class="navbar w-full shadow-xl shadow-fuchsia-700/25 text-white">
+        <div class="flex-none 2xl:hidden">
+          <label for="drawer-navbar" aria-label="open sidebar" class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              class="inline-block h-6 w-6 stroke-current">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+        </div>
+        <div class="mx-2 flex-1 px-2">
+          <a id="logo" class="btn btn-ghost normal-case text-3xl" href="index.html">
+            <i class="fa-solid fa-bolt"></i> WattsUp
+          </a>
+        </div>
+        <nav class="hidden flex-none 2xl:block">
+          <ul class="menu menu-horizontal">
+            <li>
+              <a href="#"><i class="fa-solid fa-calendar"></i> Next Day</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-cog"></i> Settings</a>
+            </li>
+            <li>
+              <a href="quiz.html"><i class="fa-solid fa-question-circle"></i>Energy Quiz</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Page Content -->
+      <main>
+        <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+          <div class="flex flex-wrap gap-4 md:gap-6 2xl:gap-7.5">
+            <!-- Card for Current Time -->
+            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+              <div
+                class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
+                <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">Current Time</p>
               </div>
-              <div class="card shadow-xl px-7.5 py-6">
-          <div class="card-body">
-            <h2 class="card-title">16:00-19:30</h2>
-            <p class="text-xl">Don't use too much energy during this time!</p>
-            <p class="text-4xl">45.7p</p>
-          </div>
+              <div class="p-4 md:p-5">
+                <div class="grid auto-cols-max grid-flow-col gap-5 text-center">
+                  <div class="bg-neutral rounded-box flex flex-col p-2">
+                    <span class="countdown text-bold text-6xl">
+                      <span id="hours" style="--value:${hours};"></span>
+                    </span>
+                  </div>
+                  <div class="bg-neutral rounded-box flex flex-col p-2">
+                    <span class="countdown text-bold text-6xl">
+                      <span id="minutes" style="--value:${minutes};"></span>
+                    </span>
+                  </div>
+                  <div class="bg-neutral rounded-box flex flex-col p-2">
+                    <span class="countdown text-bold text-6xl">
+                      <span id="seconds" style="--value:${seconds};"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card for Current Rate -->
+            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+              <div
+                class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
+                <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">12:00-12:30</p>
+              </div>
+              <div class="p-4 md:p-5">
+                <h3 class="text-5xl text-white font-bold">19.53p</h3>
+              </div>
+            </div>
+            <!-- Card for Plunge Pricing -->
+            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+              <div
+                class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
+                <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">00:30-07:30</p>
+              </div>
+              <div class="p-4 md:p-5">
+                <h3 class="text-5xl text-white">
+                  <span class="font-bold dark:text-white">-1.15p</span>
+                </h3>
+                <p class="mt-2 dark:text-neutral-400">Plunge Pricing: -1.15p</p>
+              </div>
+            </div>
+            <!-- Card for Laundry -->
+            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+              <div
+                class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
+                <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">14:00-15:30</p>
+              </div>
+              <div class="p-4 md:p-5">
+                <h3 class="text-5xl text-white font-bold">Laundry: 28p</h3>
+                <p class="mt-2 dark:text-neutral-400">(9.81/kWh)</p>
+              </div>
+            </div>
+            <!-- Card for High Usage Warning -->
+            <div class="flex flex-col flex-grow card bg-gradient-to-t from-fuchsia-600 rounded-xl">
+              <div
+                class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
+                <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">16:00-19:30</p>
+              </div>
+              <div class="p-4 md:p-5">
+                <h3 class="text-5xl text-white font-bold">45.7p</h3>
+                <p class="mt-2 text-white">Don't use too much energy during this time!</p>
               </div>
             </div>
           </div>
-        </main>
+        </div>
+      </main>
 
-    <!-- Graph section (70% width) -->
-    <div class="mt-8">
-      <div class="card shadow-xl px-7.5 py-6">
-        <div class="card-body">
-          <h2 class="card-title">Energy Usage Chart</h2>
-          <div>
-            <canvas id="myChart" height="400"></canvas>
+
+      <!-- Graph section (70% width) -->
+      <div class="mt-8">
+        <div class="px-7.5 py-6">
+          <div class="card-body">
+            <h2 class="card-title">Energy Usage Chart</h2>
+            <div>
+              <canvas id="myChart" height="400"></canvas>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
       <!-- Drawer Sidebar -->
       <aside class="drawer-side">
-        <label
-          for="drawer-navbar"
-          aria-label="close sidebar"
-          class="drawer-overlay"
-        ></label>
+        <label for="drawer-navbar" aria-label="close sidebar" class="drawer-overlay"></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <li><a href="#">Next Day</a></li>
           <li><a href="#">Next Week</a></li>
@@ -133,14 +149,12 @@
       </aside>
     </div>
 
-    <script
-      src="https://kit.fontawesome.com/692d2cc607.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/692d2cc607.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/script-for-graph.js"></script>
-   
+
     <script src="assets/js/script.js"></script>
 
-  </body>
+</body>
+
 </html>

@@ -157,3 +157,25 @@ function timeSlot(validFrom, validTo) {
 
   return `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")} - ${hourNext.toString().padStart(2, "0")}:${minuteNext.toString().padStart(2, "0")}`;
 }
+
+//Clock
+window.addEventListener("load", () => {
+  clock();
+  
+  function clock() {
+    const today = new Date();
+
+    // Get hours, minutes, and seconds and pad with '0' if less than 10
+    const hours = String(today.getHours()).padStart(2, "0");
+    const minutes = String(today.getMinutes()).padStart(2, "0");
+    const seconds = String(today.getSeconds()).padStart(2, "0");
+
+    // Update the respective elements in the HTML using CSS variables
+    document.getElementById("hours").style.setProperty("--value", hours);
+    document.getElementById("minutes").style.setProperty("--value", minutes);
+    document.getElementById("seconds").style.setProperty("--value", seconds);
+
+    // Call the function again every second
+    setTimeout(clock, 1000);
+  }
+});
