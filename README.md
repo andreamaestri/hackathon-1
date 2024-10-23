@@ -1,39 +1,59 @@
-# WattsUp
-
-A hackathon project developed during [Hackathon1] with *code institute*.
-
-
-![Logo](assets/images/mock-up.png)
-
+# ![Logo](assets/images/logo-png.png)
 ## Description
 
-WattsUp is designed to present energy rates for Octopus Energy users in a convenient and easy to understand way. It aims to help users save on their energy bills by being shown the peak and off-peak periods for energy consumption.
+WattsUp is designed to deliver energy rates for Octopus Energy users in a clear and user-friendly manner. Its primary goal is to help users save on their energy bills by providing insights into peak and off-peak periods for energy consumption, empowering them to make informed decisions about their usage.
+This project was developed during a three-day hackathon at Code Institute, following the completion of the HTML, CSS, and JavaScript modules.
+
+
+## Table of Contents
+1. [Features](#features)
+2. [UX/UI](#uxui) 
+3. [Testing](#testing)
+4. [Deployment](#deployment)
+5. [Credits](#credits)
+6. [Planning and Development Process](#planning-and-development-process)
+7. [AI Assistance](#ai-assistance)
+
+## UX/UI
+
 
 ## Features
 
-- **[Feature 1]**: [Description of Feature 1]
-- **[Feature 2]**: [Description of Feature 2]
-- **[Feature 3]**: [Description of Feature 3]
-- **[Optional Additional Features]**: [Description of other features]
+- **Real-Time Energy Rates**: Displays current energy rates in an easy-to-read format, including peak and off-peak prices.
+- **Peak and Off-Peak Notifications**: Alert users about peak and off-peak periods for energy consumption, helping them plan usage accordingly.
+- **User-Friendly Interface**: Clean Design, intuitive interface that makes it easy for users to navigate and understand their energy costs.
+- **Multi-Device Compatibility**: The platform is responsive and accessible on various devices, including desktops, tablets, and smartphones.
 
+#### Optional Additional Features 
+
+- **Personalized Recommendations**: Suggest optimal times for energy usage based on the user's consumption patterns and current rates.
+- **Alerts and Reminders**: Set up customizable alerts for users to receive notifications about changing rates or reminders to reduce usage during peak times.
+- **Community Insights**: Feature a community section where users can share tips and experiences on energy savings.
+- **FAQs and Support**: Provide a section for frequently asked questions and customer support to assist users with any issues.
 ## UX
 ### The Brief
 
 #### External User’s Goal:
-The user seeks [user's goal, e.g., accessible, easy-to-understand information on a specific topic].
+The user seeks , accessible, easy-to-understand information on energy rates and consumption patterns.
 
 #### Site Owner’s Goal:
-The site owner wants to provide a [goal of the site owner, e.g., a user-friendly platform] that helps users [specific action or result].
+The site owner wants to provide a user-friendly platform that helps users make informed decisions about their energy usage and save on their bills.
 
 ### Initial Design Thoughts
-As this project aims to [purpose], the design focuses on [design principles, e.g., simplicity, ease of use, accessibility]. The color palette and layout are chosen to [specific design choices].
+As this project aims to help users easily understand energy rates and optimize their consumption, the design focuses on simplicity, ease of use, and accessibility. The color palette and layout are chosen to create a calm and inviting atmosphere while highlighting important information, using contrasting colors for readability and intuitive navigation.
 
 #### Color Palette
-The selected color palette includes [color palette description, e.g., calming greens and blues] to evoke [feeling or tone].
+![Colourpallet](assets/images/Colour pallete.png)
+
+
+
+![Colourpallete2](assets/images/colour codes.png)
+
+The selected color palette includes deep purple (#2E073F), vibrant magenta (#7A1CAC), soft lavender (#AD49E1), and light lilac (#EBD3F8) to evoke a sense of creativity and calmness. These colors are similar to those used by Octopus Energy, reinforcing brand recognition while creating an inviting atmosphere that enhances user experience and ensures clarity in presenting important information.
 
 #### Typography
-- **[Font 1]**: Used for headers because [reason for font choice].
-- **[Font 2]**: Used for body text due to its [reason for font choice, e.g., readability].
+- **Montserrat**: Used for the logo and website links because its modern and geometric design enhances readability and creates a cohesive, professional look that aligns with the WattsUp identity.
+- **Sans-serif**: Used for body text due to its clean lines and excellent readability, making it ideal for conveying information clearly across various devices and screen sizes.
 
 ### User Stories
 
@@ -73,13 +93,13 @@ The selected color palette includes [color palette description, e.g., calming gr
 * The section should be optimised for fast performance, even with a large number of cards, ensuring smooth scrolling and minimal load times.
 
 #### Should Have
-- **Real-Time Price Updates:**: Implement a system to fetch and display energy prices every half hour, ensuring users have the latest information.
-- **User-Friendly Dashboard:**: An intuitive dashboard that visualizes energy prices, trends, and recommended times for usage.
-- **Notification System:**: A feature that allows users to set alerts for when prices drop below a specified level.
-- **Data Visualization:**: Include graphs or charts that show historical price data and forecast trends to help users make informed decisions.
+- **Real-Time Price Updates**: Implement a system to fetch and display energy prices every half hour, ensuring users have the latest information.
+- **User-Friendly Dashboard**: An intuitive dashboard that visualizes energy prices, trends, and recommended times for usage.
+- **Notification System**: A feature that allows users to set alerts for when prices drop below a specified level.
+- **Data Visualization**: Include graphs or charts that show historical price data and forecast trends to help users make informed decisions.
 
 #### Could Have
-- **Weather Integration: **: Incorporated weather data to help users understand how weather conditions might affect energy prices and consumption.
+- **Weather Integration:** Incorporated weather data to help users understand how weather conditions might affect energy prices and consumption.
 - **Carbon Footprint Calculator:**: A tool that estimates users carbon footprint based on their energy consumption, promoting eco-friendly habits.
 - **Integration with Smart Devices:**: Users can connect smart home devices to automate energy usage based on price alerts.
 - **Community Features:**: Add a forum or discussion section where users can share tips and experiences related to energy savings.
@@ -87,25 +107,25 @@ The selected color palette includes [color palette description, e.g., calming gr
 ## Wireframes & Initial Design
 
 - **Main Page**: [Describe key elements of Page 1, e.g., navbar, hero section].
-- **Graph Page**: [Describe key elements of Page 2, e.g., information cards].
+- **Graph section**: [Describe key elements of Page 2, e.g., information cards].
 - **Settings**: [Describe key elements of Page 3, e.g., footer, external links].
 
-### Mobile Wireframes
-![Mobile Device (x4)](https://hackmd.io/_uploads/B1TJz1Vx1e.png)
 
-### Tablet Wireframes
-![Tablet Wireframes](assets/images/wireframes-tablet.png)
+### Mobile and Tablet Wireframes
+
+![Tablet and mobile Wireframes](assets/images/Wireframe.png)
 
 ### Desktop Wireframes
-![Desktop Wireframes](assets/images/wireframes-desktop.png)
+![Desktop Wireframes](assets/images/wireframe1.png)
 
 ## Technologies Used
 
-- **HTML**: [Brief explanation of how it was used]
-- **JavaScript**: [Brief explanation of how it was used]
-- **CSS/Bootstrap**: [Brief explanation of how it was used]
-- **Octopus Energy REST API**: https://docs.octopus.energy/rest/guides/api-basics
-- - **Chatgpt**: Helped structure the should have and could have in the acceptance creiteria.
+- **HTML**: Used to structure the content and layout of the website, ensuring a semantic and organized presentation of information.
+- **JavaScript**: Implemented to extract data and add interactivity to the site, such as dynamic updates to energy rates and responsive features that enhance user engagement.
+- **CSS/Bootstrap**: Utilized for styling the website, ensuring a visually appealing design that is responsive and accessible across various devices, leveraging Bootstrap's grid system for layout.
+- **Octopus Energy REST API**: https://docs.octopus.energy/rest/guides/api-basics  Integrated to fetch real-time energy rate data, allowing users to access the latest information directly from Octopus Energy.
+- **Chart.js**: Used to visualize energy rate trends and consumption patterns, allowing users to easily interpret data and make informed decisions about their energy usage. The interactive charts enhance user engagement by providing clear insights into peak and off-peak periods.-
+- **Chatgpt**: Assisted in structuring the user stories and organizing the content on the README file, ensuring clarity and coherence in the project's documentation.
 
 
 ## Testing

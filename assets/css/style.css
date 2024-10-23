@@ -26,7 +26,17 @@ body{
         color: white;
         font-size: 25px;
         margin-left: 15px;
-    }
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Initial shadow */
+  transition: text-shadow 0.3s ease; /* Smooth transition */
+}
+    
+
+    #logo:hover {
+        text-shadow: 
+        0 0 10px #7A1CAC, /* Bright glow */
+        0 0 20px #AD49E1, /* Medium glow */
+        0 0 30px #EBD3F8; /* Faint glow */
+      }
 
     #navBar {
         background-color: #2E073F;
@@ -169,7 +179,7 @@ body{
     /* ------------------------------------------- Background color */
     section {
         background-color: #7A1CAC;
-        min-height: 100vh;
+        min-height: 50vh;
     }
 
      /* ------------------------------------------- Card Section */
@@ -193,7 +203,6 @@ body{
     
         @media (max-width: 768px) { /* Adjust the max-width as needed */
             .graph-card  {
-              display: none;
+            display: none;
             }
-          }
-  
+}
