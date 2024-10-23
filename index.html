@@ -9,12 +9,6 @@
       rel="stylesheet"
       type="text/css"
     />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"
-      integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>WattsUp</title>
   </head>
@@ -112,14 +106,17 @@
           </div>
         </main>
 
-     <!-- Graph section (70% width) -->
-     <div class="col-md-9 graph-card">
-      <div>
-        <canvas id="myChart" height="400"></canvas>
+    <!-- Graph section (70% width) -->
+    <div class="mt-8">
+      <div class="card shadow-xl px-7.5 py-6">
+        <div class="card-body">
+          <h2 class="card-title">Energy Usage Chart</h2>
+          <div>
+            <canvas id="myChart" height="400"></canvas>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
       <!-- Drawer Sidebar -->
       <aside class="drawer-side">
@@ -140,7 +137,10 @@
       src="https://kit.fontawesome.com/692d2cc607.js"
       crossorigin="anonymous"
     ></script>
-    <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/script-for-graph.js"></script>
+   
+    <script src="assets/js/script.js"></script>
+
   </body>
 </html>

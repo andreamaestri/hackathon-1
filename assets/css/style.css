@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Delius&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-main, section {
-    background-color: #7a1cac;
-}
+
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+    background-color: #7a1cac;
+    font-family: "Montserrat", sans-serif;
 }
-
+.bg-primary {
+    background-color: #7a1cac;
+}
 .navbar {
     background-color: #2e073f;
 }
@@ -20,37 +21,20 @@ body {
     background-color: #7a1cac;
 }
 
-/* ------------------------------------------- Navbar*/
-
 #logo {
     font-family: "Montserrat", sans-serif;
 }
-
-#navBar {
-    background-color: #2E073F;
-}
-
-/* ------------------------------------------- Card Section */
 
 .card {
     background-color: #AD49E1;
     border: none;
 }
 
-.card-header {
-    background-color: #2E073F;
-    color: white;
-}
-
 .card-body {
     color: white;
 }
 
-/* ------------------------------------------- Graph */
-
 @media (max-width: 768px) {
-
-    /* Adjust the max-width as needed */
     .graph-card {
         display: none;
     }

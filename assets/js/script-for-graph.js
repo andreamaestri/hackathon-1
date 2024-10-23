@@ -1,4 +1,3 @@
-/** Function to fetch unit rates for electricity from the Octopus Energy API*/ 
 async function fetchUnitRates(periodFrom, periodTo) {
     const url = `https://api.octopus.energy/v1/products/AGILE-24-10-01/electricity-tariffs/E-1R-AGILE-24-10-01-C/standard-unit-rates/?period_from=${periodFrom}&period_to=${periodTo}`;
 
