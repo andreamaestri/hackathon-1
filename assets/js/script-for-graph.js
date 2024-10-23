@@ -54,8 +54,8 @@ function plotGraph(timeLabels, unitRates) {
                 borderColor: '#0B666A', // Main line color
                 borderWidth: 2, // Thicker line for better visibility
                 fill: true, // Fill area under the line for a more pronounced effect
-                pointBackgroundColor: '#7A1CAC', // Point color for data points
-                pointBorderColor: '#2E073F', // Border color for points
+                pointBackgroundColor: '#35A29F', // Point color for data points
+                pointBorderColor: '#071952', // Border color for points
                 pointBorderWidth: 2,
                 pointRadius: 4, // Size of the points
                 tension: 0.3 // Smooth the line
@@ -67,12 +67,12 @@ function plotGraph(timeLabels, unitRates) {
             scales: {
                 x: {
                     title: { display: true, text: 'Time', color: '#2E073F', font: { weight: 'bold' } },
-                    grid: { color: '#EBD3F8', lineWidth: 1 }, // Grid color for x-axis
+                    grid: { color: '#071952', lineWidth: 1 }, // Grid color for x-axis
                     reverse: true // Reversing the x-axis
                 },
                 y: {
                     title: { display: true, text: 'Cost (pence per kWh)', color: '#2E073F', font: { weight: 'bold' } },
-                    grid: { color: '#EBD3F8', lineWidth: 1 }, // Grid color for y-axis
+                    grid: { color: '#071952', lineWidth: 1 }, // Grid color for y-axis
                     beginAtZero: false,
                     ticks: {
                         color: '#2E073F', // Color for y-axis ticks
