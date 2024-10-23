@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Delius&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* cards */
 
 .card-body {
     text-align: center;
+    height: 150px;
 }
-=======
-}
+
 
 .middle-container {
     margin: auto;
@@ -130,14 +136,28 @@
         transform: translateX(100%) !important;
     }
 
+    .offcanvas-header {
+        background-color: #2E073F;
+        height: 64px;
+        color: white;
+    }
+
     .offcanvas.show {
         transform: translateX(0) !important;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .btn-close  {
+        background-color: rgba(255, 255, 255, 0.441);
     }
 
     .offcanvas-end {
         background-color: #7A1CAC;
         width: 280px;
         transition: transform 0.3s ease-in-out;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 
     #offcanvasNavbar {
@@ -152,3 +172,28 @@
         min-height: 100vh;
     }
 
+     /* ------------------------------------------- Card Section */
+
+    .card {
+        background-color:#AD49E1;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .card-header {
+        background-color: #2E073F;
+        color: white;
+    }
+
+    .card-body {
+        color: white;
+    }
+
+    /* ------------------------------------------- Graph */
+    
+        @media (max-width: 768px) { /* Adjust the max-width as needed */
+            .graph-card  {
+              display: none;
+            }
+          }
+  
