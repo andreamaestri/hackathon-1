@@ -93,20 +93,23 @@ function isEndOfDay(now) {
   return now.getHours() >= 21 && now.getMinutes() >= 30;
 }
 
-const endOfDay = isEndOfDay(now) ? 
-  new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000) : 
-  new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000 - 1);
+const endOfDay = isEndOfDay(now)
+  ? new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000)
+  : new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000 - 1);
 
 // Retrieve 1-Day JSON request
 let dayPeriodFrom = startOfDay.toISOString();
-let dayPeriodTo = endOfDay.toISOString();;
+let dayPeriodTo = endOfDay.toISOString();
 
 let dayApiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${dayPeriodFrom}&period_to=${dayPeriodTo}`;
 
 //Fetch 1-Day API Data
 
-let dayRate = []; 
-
+let dayRate = [];
+let longestSlots = [];
+let currentSlots = [];
+const jumpThreshold = 0.1;
+let results = [];
 fetch(dayApiUrl)
   .then((response) => {
     if (!response.ok) {
@@ -116,7 +119,7 @@ fetch(dayApiUrl)
   })
   .then((data) => {
     if (data.results && data.results.length > 0) {
-      // Loop through each result
+      // Loop through each result and populate dayRate
       data.results.forEach((result) => {
         let dayRatePrice = parseFloat(result.value_inc_vat);
         let dayRateValidFrom = new Date(result.valid_from);
@@ -126,11 +129,42 @@ fetch(dayApiUrl)
         dayRate.push({ dayRatePrice, dayRateValidFrom, dayRateValidTo });
       });
 
-      // Sorting cheapest dayPrice
-      dayRate.sort((a, b) => a.dayRatePrice - b.dayRatePrice);
-      let topCheapest = dayRate.slice(0, 3);
+      // Start with the first slot
+      currentSlots.push(dayRate[0]);
 
-      console.log(topCheapest);
+      for (let i = 1; i < dayRate.length; i++) {
+        const currentSlot = dayRate[i];
+        const previousSlot = dayRate[i - 1];
+
+        // Check price difference with the threshold
+        if (
+          Math.abs(currentSlot.dayRatePrice - previousSlot.dayRatePrice) <=
+          jumpThreshold * previousSlot.dayRatePrice
+        ) {
+          currentSlots.push(currentSlot);
+        } else {
+          // Store the time slot for the previous sequence
+          if (currentSlots.length > 0) {
+            results.push(
+              timeSlot(
+                new Date(currentSlots[0].dayRateValidFrom),
+                new Date(currentSlots[currentSlots.length - 1].dayRateValidTo)
+              )
+            );
+          }
+          currentSlots = [currentSlot];
+        }
+      }
+
+      // Check for any remaining slots after the loop
+      if (currentSlots.length > 0) {
+        results.push(
+          timeSlot(
+            new Date(currentSlots[0].dayRateValidFrom),
+            new Date(currentSlots[currentSlots.length - 1].dayRateValidTo)
+          )
+        );
+      }
     } else {
       console.log("No results found.");
     }
@@ -138,7 +172,6 @@ fetch(dayApiUrl)
   .catch((error) => {
     console.error("There was a problem with the fetch operation:", error);
   });
-
 
 // Function to format the time slot
 function timeSlot(validFrom, validTo) {
