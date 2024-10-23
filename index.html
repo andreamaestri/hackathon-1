@@ -26,92 +26,92 @@
         <!-- Navbar -->
         <div class="navbar w-full text-white">
           <div class="flex-none lg:hidden">
-            <label
-              for="drawer-navbar"
-              aria-label="open sidebar"
-              class="btn btn-square btn-ghost"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="inline-block h-6 w-6 stroke-current"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </label>
+        <label
+          for="drawer-navbar"
+          aria-label="open sidebar"
+          class="btn btn-square btn-ghost"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            class="inline-block h-6 w-6 stroke-current"
+          >
+            <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </label>
           </div>
           <div class="mx-2 flex-1 px-2">
-            <a
-              id="logo"
-              class="btn btn-ghost normal-case text-xl"
-              href="index.html"
-            >
-              <i class="fa-solid fa-bolt"></i> WattsUp
-            </a>
+        <a
+          id="logo"
+          class="btn btn-ghost normal-case text-xl"
+          href="index.html"
+        >
+          <i class="fa-solid fa-bolt"></i> WattsUp
+        </a>
           </div>
           <div class="hidden flex-none lg:block">
-            <ul class="menu menu-horizontal">
-              <li>
-                <a href="#"><i class="fa-solid fa-calendar"></i> Next Day</a>
-              </li>
-              <li>
-                <a href="#"><i class="fa-solid fa-cog"></i> Settings</a>
-              </li>
-              <li>
-                <a href="quiz.html"
-                  ><i class="fa-solid fa-question-circle"></i>Energy Quiz</a
-                >
-              </li>
-            </ul>
+        <ul class="menu menu-horizontal">
+          <li>
+            <a href="#"><i class="fa-solid fa-calendar"></i> Next Day</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-cog"></i> Settings</a>
+          </li>
+          <li>
+            <a href="quiz.html"
+          ><i class="fa-solid fa-question-circle"></i>Energy Quiz</a
+            >
+          </li>
+        </ul>
           </div>
         </div>
 
         <!-- Page Content -->
         <section class="p-6">
-          <div class="flex flex-wrap justify-around">
-            <!-- Card for Current Rate -->
-            <div class="card bg-base-100 shadow-xl">
-              <div class="card-body">
-                <h2 class="card-title">12:00-12:30</h2>
-                <p class="text-4xl">19.53p</p>
-              </div>
-            </div>
-            <div class="card bg-base-100 shadow-xl">
-              <div class="card-body">
-                <h2 class="card-title">00:30-07:30</h2>
-                <p class="text-4xl">Plunge Pricing: -1.15p</p>
-              </div>
-            </div>
+          <div class="flex flex-wrap justify-around gap-4">
+        <!-- Card for Current Rate -->
+        <div class="card bg-base-100 shadow-xl m-4">
+          <div class="card-body">
+            <h2 class="card-title">12:00-12:30</h2>
+            <p class="text-4xl">19.53p</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">00:30-07:30</h2>
+            <p class="text-4xl">Plunge Pricing: -1.15p</p>
+          </div>
+        </div>
         
-            <!-- Cards for Upcoming Rates -->
-            <div class="card bg-base-100 shadow-xl">
-              <div class="card-body">
-                <h2 class="card-title">14:00-15:30</h2>
-                <p class="text-4xl">Laundry: 28p</p>
-                <p>(9.81/kWh)</p>
-              </div>
-            </div>
-            <div class="card bg-base-100 shadow-xl">
-              <div class="card-body">
-                <h2 class="card-title">16:00-19:30</h2>
-                <p class="text-xl">Don't use too much energy during this time!</p>
-                <p class="text-4xl">45.7p</p>
-              </div>
-            </div>
+        <!-- Cards for Upcoming Rates -->
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">14:00-15:30</h2>
+            <p class="text-4xl">Laundry: 28p</p>
+            <p>(9.81/kWh)</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">16:00-19:30</h2>
+            <p class="text-xl">Don't use too much energy during this time!</p>
+            <p class="text-4xl">45.7p</p>
+          </div>
+        </div>
           </div>
         </section>        
 
         <!-- Chart Section -->
         <section>
           <div class="mx-auto w-4/5 my-8">
-            <canvas id="myChart" height="300"></canvas>
+        <canvas id="myChart" height="300"></canvas>
           </div>
         </section>
       </div>
