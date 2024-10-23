@@ -50,8 +50,8 @@ function plotGraph(timeLabels, unitRates) {
             datasets: [{
                 label: 'Unit Rate (pence per kWh)',
                 data: unitRates,
-                backgroundColor: 'rgba(237, 211, 248, 0.4)', // Light version of the last color
-                borderColor: '#AD49E1', // Main line color
+                backgroundColor: 'rgba(167,254,237,0.4)', // Light version of the last color
+                borderColor: '#0B666A', // Main line color
                 borderWidth: 2, // Thicker line for better visibility
                 fill: true, // Fill area under the line for a more pronounced effect
                 pointBackgroundColor: '#7A1CAC', // Point color for data points
