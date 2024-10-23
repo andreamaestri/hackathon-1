@@ -3,7 +3,7 @@
 A hackathon project developed during [Hackathon1] with *code institute*.
 
 
-![Logo](assets/images/mock-up.png)
+![Logo](assets/images/logo-png.png)
 
 ## Description
 
@@ -11,24 +11,34 @@ WattsUp is designed to present energy rates for Octopus Energy users in a conven
 
 ## Features
 
-- **[Feature 1]**: [Description of Feature 1]
-- **[Feature 2]**: [Description of Feature 2]
-- **[Feature 3]**: [Description of Feature 3]
-- **[Optional Additional Features]**: [Description of other features]
+- **Real-Time Energy Rates**: Displays current energy rates in an easy-to-read format, including peak and off-peak prices.
+- **Peak and Off-Peak Notifications**: Alert users about peak and off-peak periods for energy consumption, helping them plan usage accordingly.
+- **User-Friendly Interface**: Clean Design, intuitive interface that makes it easy for users to navigate and understand their energy costs.
+- **Multi-Device Compatibility**: The platform is responsive and accessible on various devices, including desktops, tablets, and smartphones.
 
+#### Optional Additional Features 
+
+- **Personalized Recommendations**: Suggest optimal times for energy usage based on the user's consumption patterns and current rates.
+- **Alerts and Reminders**: Set up customizable alerts for users to receive notifications about changing rates or reminders to reduce usage during peak times.
+- **Community Insights**: Feature a community section where users can share tips and experiences on energy savings.
+- **FAQs and Support**: Provide a section for frequently asked questions and customer support to assist users with any issues.
 ## UX
 ### The Brief
 
 #### External User’s Goal:
-The user seeks [user's goal, e.g., accessible, easy-to-understand information on a specific topic].
+The user seeks , accessible, easy-to-understand information on energy rates and consumption patterns.
 
 #### Site Owner’s Goal:
-The site owner wants to provide a [goal of the site owner, e.g., a user-friendly platform] that helps users [specific action or result].
+The site owner wants to provide a user-friendly platform that helps users make informed decisions about their energy usage and save on their bills.
 
 ### Initial Design Thoughts
 As this project aims to [purpose], the design focuses on [design principles, e.g., simplicity, ease of use, accessibility]. The color palette and layout are chosen to [specific design choices].
 
 #### Color Palette
+![colourpallet1](/workspace/hackathon-1/assets/images/Colour pallete.png)
+![colourpallete2](assets/images/colour codes.png)
+
+![TabletWireframes](assets/images/Colour pallete.png)
 The selected color palette includes [color palette description, e.g., calming greens and blues] to evoke [feeling or tone].
 
 #### Typography
@@ -73,13 +83,13 @@ The selected color palette includes [color palette description, e.g., calming gr
 * The section should be optimised for fast performance, even with a large number of cards, ensuring smooth scrolling and minimal load times.
 
 #### Should Have
-- **Real-Time Price Updates:**: Implement a system to fetch and display energy prices every half hour, ensuring users have the latest information.
-- **User-Friendly Dashboard:**: An intuitive dashboard that visualizes energy prices, trends, and recommended times for usage.
-- **Notification System:**: A feature that allows users to set alerts for when prices drop below a specified level.
-- **Data Visualization:**: Include graphs or charts that show historical price data and forecast trends to help users make informed decisions.
+- **Real-Time Price Updates**: Implement a system to fetch and display energy prices every half hour, ensuring users have the latest information.
+- **User-Friendly Dashboard**: An intuitive dashboard that visualizes energy prices, trends, and recommended times for usage.
+- **Notification System**: A feature that allows users to set alerts for when prices drop below a specified level.
+- **Data Visualization**: Include graphs or charts that show historical price data and forecast trends to help users make informed decisions.
 
 #### Could Have
-- **Weather Integration: **: Incorporated weather data to help users understand how weather conditions might affect energy prices and consumption.
+- **Weather Integration:** Incorporated weather data to help users understand how weather conditions might affect energy prices and consumption.
 - **Carbon Footprint Calculator:**: A tool that estimates users carbon footprint based on their energy consumption, promoting eco-friendly habits.
 - **Integration with Smart Devices:**: Users can connect smart home devices to automate energy usage based on price alerts.
 - **Community Features:**: Add a forum or discussion section where users can share tips and experiences related to energy savings.
