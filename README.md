@@ -1,13 +1,21 @@
-# WattsUp
-
-A hackathon project developed during [Hackathon1] with *code institute*.
-
-
-![Logo](assets/images/logo-png.png)
-
+# ![Logo](assets/images/logo-png.png)
 ## Description
 
-WattsUp is designed to present energy rates for Octopus Energy users in a convenient and easy to understand way. It aims to help users save on their energy bills by being shown the peak and off-peak periods for energy consumption.
+WattsUp is designed to deliver energy rates for Octopus Energy users in a clear and user-friendly manner. Its primary goal is to help users save on their energy bills by providing insights into peak and off-peak periods for energy consumption, empowering them to make informed decisions about their usage.
+This project was developed during a three-day hackathon at Code Institute, following the completion of the HTML, CSS, and JavaScript modules.
+
+
+## Table of Contents
+1. [Features](#features)
+2. [UX/UI](#uxui) 
+3. [Testing](#testing)
+4. [Deployment](#deployment)
+5. [Credits](#credits)
+6. [Planning and Development Process](#planning-and-development-process)
+7. [AI Assistance](#ai-assistance)
+
+## UX/UI
+
 
 ## Features
 
@@ -32,18 +40,20 @@ The user seeks , accessible, easy-to-understand information on energy rates and 
 The site owner wants to provide a user-friendly platform that helps users make informed decisions about their energy usage and save on their bills.
 
 ### Initial Design Thoughts
-As this project aims to [purpose], the design focuses on [design principles, e.g., simplicity, ease of use, accessibility]. The color palette and layout are chosen to [specific design choices].
+As this project aims to help users easily understand energy rates and optimize their consumption, the design focuses on simplicity, ease of use, and accessibility. The color palette and layout are chosen to create a calm and inviting atmosphere while highlighting important information, using contrasting colors for readability and intuitive navigation.
 
 #### Color Palette
-![colourpallet1](/workspace/hackathon-1/assets/images/Colour pallete.png)
-![colourpallete2](assets/images/colour codes.png)
+![Colourpallet](assets/images/Colour pallete.png)
 
-![TabletWireframes](assets/images/Colour pallete.png)
-The selected color palette includes [color palette description, e.g., calming greens and blues] to evoke [feeling or tone].
+
+
+![Colourpallete2](assets/images/colour codes.png)
+
+The selected color palette includes deep purple (#2E073F), vibrant magenta (#7A1CAC), soft lavender (#AD49E1), and light lilac (#EBD3F8) to evoke a sense of creativity and calmness. These colors are similar to those used by Octopus Energy, reinforcing brand recognition while creating an inviting atmosphere that enhances user experience and ensures clarity in presenting important information.
 
 #### Typography
-- **[Font 1]**: Used for headers because [reason for font choice].
-- **[Font 2]**: Used for body text due to its [reason for font choice, e.g., readability].
+- **Montserrat**: Used for the logo and website links because its modern and geometric design enhances readability and creates a cohesive, professional look that aligns with the WattsUp identity.
+- **Sans-serif**: Used for body text due to its clean lines and excellent readability, making it ideal for conveying information clearly across various devices and screen sizes.
 
 ### User Stories
 
@@ -97,25 +107,25 @@ The selected color palette includes [color palette description, e.g., calming gr
 ## Wireframes & Initial Design
 
 - **Main Page**: [Describe key elements of Page 1, e.g., navbar, hero section].
-- **Graph Page**: [Describe key elements of Page 2, e.g., information cards].
+- **Graph section**: [Describe key elements of Page 2, e.g., information cards].
 - **Settings**: [Describe key elements of Page 3, e.g., footer, external links].
 
-### Mobile Wireframes
-![Mobile Device (x4)](https://hackmd.io/_uploads/B1TJz1Vx1e.png)
 
-### Tablet Wireframes
-![Tablet Wireframes](assets/images/wireframes-tablet.png)
+### Mobile and Tablet Wireframes
+
+![Tablet and mobile Wireframes](assets/images/Wireframe.png)
 
 ### Desktop Wireframes
-![Desktop Wireframes](assets/images/wireframes-desktop.png)
+![Desktop Wireframes](assets/images/wireframe1.png)
 
 ## Technologies Used
 
-- **HTML**: [Brief explanation of how it was used]
-- **JavaScript**: [Brief explanation of how it was used]
-- **CSS/Bootstrap**: [Brief explanation of how it was used]
-- **Octopus Energy REST API**: https://docs.octopus.energy/rest/guides/api-basics
-- - **Chatgpt**: Helped structure the should have and could have in the acceptance creiteria.
+- **HTML**: Used to structure the content and layout of the website, ensuring a semantic and organized presentation of information.
+- **JavaScript**: Implemented to extract data and add interactivity to the site, such as dynamic updates to energy rates and responsive features that enhance user engagement.
+- **CSS/Bootstrap**: Utilized for styling the website, ensuring a visually appealing design that is responsive and accessible across various devices, leveraging Bootstrap's grid system for layout.
+- **Octopus Energy REST API**: https://docs.octopus.energy/rest/guides/api-basics  Integrated to fetch real-time energy rate data, allowing users to access the latest information directly from Octopus Energy.
+- **Chart.js**: Used to visualize energy rate trends and consumption patterns, allowing users to easily interpret data and make informed decisions about their energy usage. The interactive charts enhance user engagement by providing clear insights into peak and off-peak periods.-
+- **Chatgpt**: Assisted in structuring the user stories and organizing the content on the README file, ensuring clarity and coherence in the project's documentation.
 
 
 ## Testing
