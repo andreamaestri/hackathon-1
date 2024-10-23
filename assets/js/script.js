@@ -3,10 +3,6 @@ const now = new Date();
 const next = new Date(now);
 next.setMinutes(now.getMinutes() + 60);
 
-//Day Parameters
-const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); 
-
 let periodFrom = now.toISOString();
 let periodTo = next.toISOString();
 
@@ -16,7 +12,7 @@ let tariffCode = "E-1R-AGILE-24-10-01-L";
 let currentRate;
 
 // Define API Endpoint URL using backticks for template literals
-let apiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${periodFrom}Z&period_to=${periodTo}Z`;
+let apiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${periodFrom}&period_to=${periodTo}`;
 
 console.log(apiUrl); // Outputs the correct URL
 console.log(periodFrom); // Logs 'period_from' (now)
@@ -89,34 +85,60 @@ fetch(apiUrl)
     console.error("Error:", error);
   });
 
+//Day Parameters
+const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+//Check if next-day data is published at 9:30
+function isEndOfDay(now) {
+  return now.getHours() >= 21 && now.getMinutes() >= 30;
+}
+
+const endOfDay = isEndOfDay(now) ? 
+  new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000) : 
+  new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000 - 1);
+
 // Retrieve 1-Day JSON request
 let dayPeriodFrom = startOfDay.toISOString();
-let dayPeriodTo = endOfDay.toISOString();
+let dayPeriodTo = endOfDay.toISOString();;
 
-let dayRate = [];
-
-let dayApiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${dayPeriodFrom}Z&period_to=${dayPeriodTo}Z`;
+let dayApiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${dayPeriodFrom}&period_to=${dayPeriodTo}`;
 
 //Fetch 1-Day API Data
 
+let dayRate = []; 
+
 fetch(dayApiUrl)
-.then((response) => {
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-})
-.then((data) => {
-  if (data.results && data.results.length > 0) {
-    let dayRatePrice = parseFloat(result.value_inc_vat);
-    let dayRateValidFrom = new Date(result.valid_from);
-    let dayRateValidTo = new Date(result.valid_to);
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if (data.results && data.results.length > 0) {
+      // Loop through each result
+      data.results.forEach((result) => {
+        let dayRatePrice = parseFloat(result.value_inc_vat);
+        let dayRateValidFrom = new Date(result.valid_from);
+        let dayRateValidTo = new Date(result.valid_to);
 
-    dayRate.push({ dayRatePrice,dayRateValidFrom, dayRateValidTo });
-  }
-});
+        // Push the rate to the dayRate array
+        dayRate.push({ dayRatePrice, dayRateValidFrom, dayRateValidTo });
+      });
 
-//Sorting cheapest dayPrice
+      // Sorting cheapest dayPrice
+      dayRate.sort((a, b) => a.dayRatePrice - b.dayRatePrice);
+      let topCheapest = dayRate.slice(0, 3);
+
+      console.log(topCheapest);
+    } else {
+      console.log("No results found.");
+    }
+  })
+  .catch((error) => {
+    console.error("There was a problem with the fetch operation:", error);
+  });
+
 
 // Function to format the time slot
 function timeSlot(validFrom, validTo) {
