@@ -136,14 +136,28 @@ body{
         transform: translateX(100%) !important;
     }
 
+    .offcanvas-header {
+        background-color: #2E073F;
+        height: 64px;
+        color: white;
+    }
+
     .offcanvas.show {
         transform: translateX(0) !important;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .btn-close  {
+        background-color: rgba(255, 255, 255, 0.441);
     }
 
     .offcanvas-end {
         background-color: #7A1CAC;
         width: 280px;
         transition: transform 0.3s ease-in-out;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 
     #offcanvasNavbar {
@@ -156,6 +170,23 @@ body{
     section {
         background-color: #7A1CAC;
         min-height: 100vh;
+    }
+
+     /* ------------------------------------------- Card Section */
+
+    .card {
+        background-color:#AD49E1;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .card-header {
+        background-color: #2E073F;
+        color: white;
+    }
+
+    .card-body {
+        color: white;
     }
 
     /* ------------------------------------------- Graph */
