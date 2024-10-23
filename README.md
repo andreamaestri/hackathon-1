@@ -20,7 +20,6 @@ This project was developed during a three-day hackathon at Code Institute, follo
 ## Features
 
 - **Real-Time Energy Rates**: Displays current energy rates in an easy-to-read format, including peak and off-peak prices.
-- **Peak and Off-Peak Notifications**: Alert users about peak and off-peak periods for energy consumption, helping them plan usage accordingly.
 - **User-Friendly Interface**: Clean Design, intuitive interface that makes it easy for users to navigate and understand their energy costs.
 - **Multi-Device Compatibility**: The platform is responsive and accessible on various devices, including desktops, tablets, and smartphones.
 
@@ -43,13 +42,19 @@ The site owner wants to provide a user-friendly platform that helps users make i
 As this project aims to help users easily understand energy rates and optimize their consumption, the design focuses on simplicity, ease of use, and accessibility. The color palette and layout are chosen to create a calm and inviting atmosphere while highlighting important information, using contrasting colors for readability and intuitive navigation.
 
 #### Color Palette
-![Colourpallet](assets/images/Colour pallete.png)
+![ColourPalette](assets/images/colour-palette.png)
 
 
 
-![Colourpallete2](assets/images/colour codes.png)
+![Colourpallete2](assets/images/colour-codes.png)
 
 The selected color palette includes deep purple (#2E073F), vibrant magenta (#7A1CAC), soft lavender (#AD49E1), and light lilac (#EBD3F8) to evoke a sense of creativity and calmness. These colors are similar to those used by Octopus Energy, reinforcing brand recognition while creating an inviting atmosphere that enhances user experience and ensures clarity in presenting important information.
+
+The color palette choice for the graph was made to contrast with the varying purples, offering more accessibility to otherwise dense data. This showcases **#07195** **#0B666A** **#35A29F** **#97FEED** with the additional **#FFF** for the white grid lines: 
+
+![graphColorPalette](assets/images/colour-palette-graph.png)
+
+![colorCodesGraph](assets/images/colour-codes-graph.png)
 
 #### Typography
 - **Montserrat**: Used for the logo and website links because its modern and geometric design enhances readability and creates a cohesive, professional look that aligns with the WattsUp identity.
@@ -103,6 +108,7 @@ The selected color palette includes deep purple (#2E073F), vibrant magenta (#7A1
 - **Carbon Footprint Calculator:**: A tool that estimates users carbon footprint based on their energy consumption, promoting eco-friendly habits.
 - **Integration with Smart Devices:**: Users can connect smart home devices to automate energy usage based on price alerts.
 - **Community Features:**: Add a forum or discussion section where users can share tips and experiences related to energy savings.
+- **Peak and Off-Peak Notifications**: Alert users about peak and off-peak periods for energy consumption, helping them plan usage accordingly.
 
 ## Wireframes & Initial Design
 
@@ -141,9 +147,10 @@ The selected color palette includes deep purple (#2E073F), vibrant magenta (#7A1
 
 ## Deployment
 
-The project was deployed using **GitHub Pages** and can be accessed at [Live Link]. Steps taken to deploy:
+The project was deployed using **GitHub Pages** and can be accessed through [live link]. Steps taken to deploy:
 1. [Deployment step 1]
 2. [Deployment step 2]
+
 
 ## Reflection on Development Process
 
