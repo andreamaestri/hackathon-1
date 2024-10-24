@@ -179,7 +179,7 @@ body{
     /* ------------------------------------------- Background color */
     section {
         background-color: #7A1CAC;
-        min-height: 50vh;
+        min-height: 100vh;
     }
 
      /* ------------------------------------------- Card Section */
@@ -205,4 +205,66 @@ body{
             .graph-card  {
             display: none;
             }
+}
+
+/*------------------------------------------------ Quiz */
+
+
+.quiz-card {
+    
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto 0;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.quiz-card h1 {
+    font-size: 25px;
+    color: #2E073F;
+    border-bottom: 1px solid #2E073F;
+    padding-bottom: 30px;
+    
+}
+
+.quiz {
+    padding: 20px 0;
+
+}
+
+.quiz h2 {
+    font-size: 18px;
+    color: #7A1CAC;
+    font-weight: 600;
+}
+
+.quiz-button {
+    background:#AD49E1 ;
+    color: white;
+    font-weight: 500;
+    width: 100%;
+    border: 1px solid #2E073F;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.quiz-button:hover {
+background: #7A1CAC;
+color: white;
+}
+
+#next-button {
+    background: #AD49E1;
+    color: #2E073F;
+    font-weight: 500;
+    width: 150px;
+    border: 0;
+    padding: 10px;
+    margin: 20px auto 0;
+    border-radius: 3px;
+    cursor: pointer;
 }
