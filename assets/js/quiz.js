@@ -63,7 +63,7 @@ const question = [
         ]
     }
     {
-        question: "Energy wasted by heating systems",
+        question: "What is an energy audit?",
         answers: [
             { text:"A review of energy bills", correct: false},
             { text:"An inspection to identify energy-saving opportunities", correct: true},
