@@ -118,147 +118,223 @@
     </div>
   </div>
 
-  <!-- Card for Current Rate -->
-  <div
-    class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50">
-    <div class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
-      <p id="timeNowEl" class="mt-1 text-[#EBD3F8] font-semibold uppercase">
-        12:00-12:30
-      </p>
-    </div>
-    <div class="p-4 md:p-5">
-      <h3 id="rateNowEl" class="text-5xl text-white">19.53p</h3>
-    </div>
-  </div>
 
-  <!-- Card for Next Rate -->
-  <div
-    class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50">
-    <div class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
-      <p id="timeNextEl" class="mt-1 text-[#EBD3F8] font-semibold uppercase">
-        00:30-07:30
-      </p>
-    </div>
-    <div class="p-4 md:p-5">
-      <h3 id="rateNextEl" class="text-5xl text-white">
-        <span class="font-bold dark:text-white">-1.15p</span>
-      </h3>
-      <div class="badge badge-ghost mt-2">
-        <p id="trendEl" class="text-violet-500">Trend Average</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card for Top 3 Cheapest Rates -->
-  <div
-    class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50">
-    <div class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
-      <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">
-        Cheapest rates today
-      </p>
-    </div>
-    <div class="p-4 md:p-5">
-      <div class="flex flex-col">
-        <div class="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-3">
-          <div class="p-2.5 xl:p-5">
-            <h5 class="text-sm font-medium uppercase xsm:text-base">
-              Time
-            </h5>
-          </div>
-          <div class="p-2.5 text-center xl:p-5">
-            <h5 class="text-sm font-medium uppercase xsm:text-base">
-              Rate
-            </h5>
-          </div>
-          <div class="p-2.5 text-center xl:p-5">
-            <h5 class="text-sm font-medium uppercase xsm:text-base">
-              Trend
-            </h5>
-          </div>
+  <div class="mx-auto h-lvh p-4 md:p-6 2xl:p-5">
+    <div class="flex flex-wrap gap-4 md:gap-6 2xl:gap-7.5">
+      <!-- Warning Card -->
+      <div class="warning-card flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50 hidden">
+        <div class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
+          <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">Warning</p>
         </div>
-
-        <div class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-3">
-          <div class="flex items-center justify-center p-2.5 xl:p-5">
-            <p id="timeSlot1" class="font-medium text-black dark:text-white">
-              00:00-00:30
-            </p>
-          </div>
-          <div class="flex items-center justify-center p-2.5 xl:p-5">
-            <p id="rate1" class="font-medium text-meta-3">-1.15p</p>
-          </div>
-          <div class="flex items-center justify-center p-2.5 xl:p-5">
-            <p id="trend1" class="font-medium text-meta-5">
-              Plunge Pricing
-            </p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-3">
-          <div class="flex items-center justify-center p-2.5 xl:p-5">
-            <p id="timeSlot2" class="font-medium text-black dark:text-white">
-              01:00-01:30
-            </p>
-          </div>
-          <div class="flex items-center justify-center p-2.5 xl:p-5">
-            <p id="rate2" class="font-medium text-meta-3">0.50p</p>
-          </div>
-          <div class="flex items-center justify-center p-2.5 xl:p-5">
-            <p id="trend2" class="font-medium text-meta-5">Low</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-3 sm:grid-cols-3">
-          <div class="flex items-center justify-center p-2.5 xl:p-5">
-            <p id="timeSlot3" class="font-medium text-black dark:text-white">
-              02:00-02:30
-            </p>
-          </div>
-          <div class="flex items-center justify-center p-2.5 xl:p-5">
-            <p id="rate3" class="font-medium text-meta-3">1.00p</p>
-          </div>
-          <div class="flex items-center justify-center p-2.5 xl:p-5">
-            <p id="trend3" class="font-medium text-meta-5">Low</p>
-          </div>
+        <div class="p-4 md:p-5">
+          <h3 class="text-5xl text-white">Data not published yet</h3>
+          <p class="mt-2 text-white">
+            The next day's data will be available after 4 PM.
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Card for High Usage Warning -->
-  <div
-    class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50">
-    <div class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5">
-      <p id="highUsageTimeEl" class="mt-1 text-[#EBD3F8] font-semibold uppercase">
-        16:00-19:30
-      </p>
-    </div>
-    <div class="p-4 md:p-5">
-      <h3 id="highUsageRateEl" class="text-5xl text-white font-bold">
-        45.7p
-      </h3>
-      <p class="mt-2 text-white">
-        Don't use too much energy during this time!
-      </p>
-    </div>
-  </div>
-
-  <!-- Card for Energy Daily Import Tariff -->
-  <div class="flex-grow flex flex-col custom-card rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50">
-    <!-- Card body with chart content -->
-    <div class="relative w-full h-96">
-      <!-- Custom information -->
-      <div class="about p-5 text-white font-bold text-xl">
-        <h3>Octopus Agile Tariff</h3>
+  <div class="mx-auto h-lvh p-4 md:p-6 2xl:p-5">
+    <div class="flex flex-wrap gap-4 md:gap-6 2xl:gap-7.5">
+      <!-- Card for Current Time -->
+      <div
+        class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50"
+      >
+        <div
+          class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5"
+        >
+          <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">
+            Current Time
+          </p>
+        </div>
+        <div class="p-4 md:p-5">
+          <div
+            class="grid auto-cols-auto grid-flow-col shrink gap-5 text-center"
+          >
+            <div class="bg-neutral rounded-box flex flex-col p-2">
+              <span class="countdown text-bold text-6xl">
+                <span id="hours" style="--value:${hours};"></span>
+              </span>
+            </div>
+            <div class="bg-neutral rounded-box flex flex-col p-2">
+              <span class="countdown text-bold text-6xl">
+                <span id="minutes" style="--value:${minutes};"></span>
+              </span>
+            </div>
+            <div class="bg-neutral rounded-box flex flex-col p-2">
+              <span class="countdown text-bold text-6xl">
+                <span id="seconds" style="--value:${seconds};"></span>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Canvas for Chart.js -->
-      <canvas id="myChart" class="z-10 absolute inset-0 bottom-0 w-full h-full"></canvas>
+      <!-- Card for Current Rate -->
+      <div
+        class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50"
+      >
+        <div
+          class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5"
+        >
+          <p
+            id="timeNowEl"
+            class="mt-1 text-[#EBD3F8] font-semibold uppercase"
+          >
+            12:00-12:30
+          </p>
+        </div>
+        <div class="p-4 md:p-5">
+          <h3 id="rateNowEl" class="text-5xl text-white">19.53p</h3>
+        </div>
+      </div>
 
-      <!-- Custom Axis -->
-      <div class="z-0 axis inset-x-0 bottom-0 w-full h-full" id="customAxis"></div>
+      <!-- Card for Next Rate -->
+      <div
+        class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50"
+      >
+        <div
+          class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5"
+        >
+          <p
+            id="timeNextEl"
+            class="mt-1 text-[#EBD3F8] font-semibold uppercase"
+          >
+            00:30-07:30
+          </p>
+        </div>
+        <div class="p-4 md:p-5">
+          <h3 id="rateNextEl" class="text-5xl text-white">
+            <span class="font-bold dark:text-white">-1.15p</span>
+          </h3>
+          <div class="badge badge-ghost mt-2">
+            <p id="trendEl" class="text-violet-500">Trend Average</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card for Top 3 Cheapest Rates -->
+      <div
+        class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50"
+      >
+        <div
+          class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5"
+        >
+          <p class="mt-1 text-[#EBD3F8] font-semibold uppercase">
+            Cheapest rates today
+          </p>
+        </div>
+        <div class="p-4 md:p-5">
+          <div class="flex flex-col">
+            <div
+              class="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-3"
+            >
+              <div class="p-2.5 xl:p-5">
+                <h5 class="text-sm font-medium uppercase xsm:text-base">
+                  Time
+                </h5>
+              </div>
+              <div class="p-2.5 text-center xl:p-5">
+                <h5 class="text-sm font-medium uppercase xsm:text-base">
+                  Rate
+                </h5>
+              </div>
+              <div class="p-2.5 text-center xl:p-5">
+                <h5 class="text-sm font-medium uppercase xsm:text-base">
+                  Trend
+                </h5>
+              </div>
+            </div>
+
+            <div
+              class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-3"
+            >
+              <div class="flex items-center justify-center p-2.5 xl:p-5">
+                <p
+                  id="timeSlot1"
+                  class="font-medium text-black dark:text-white"
+                >
+                  00:00-00:30
+                </p>
+              </div>
+              <div class="flex items-center justify-center p-2.5 xl:p-5">
+                <p id="rate1" class="font-medium text-meta-3">-1.15p</p>
+              </div>
+              <div class="flex items-center justify-center p-2.5 xl:p-5">
+                <p id="trend1" class="font-medium text-meta-5">
+                  Plunge Pricing
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-3"
+            >
+              <div class="flex items-center justify-center p-2.5 xl:p-5">
+                <p
+                  id="timeSlot2"
+                  class="font-medium text-black dark:text-white"
+                >
+                  01:00-01:30
+                </p>
+              </div>
+              <div class="flex items-center justify-center p-2.5 xl:p-5">
+                <p id="rate2" class="font-medium text-meta-3">0.50p</p>
+              </div>
+              <div class="flex items-center justify-center p-2.5 xl:p-5">
+                <p id="trend2" class="font-medium text-meta-5">Low</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 sm:grid-cols-3">
+              <div class="flex items-center justify-center p-2.5 xl:p-5">
+                <p
+                  id="timeSlot3"
+                  class="font-medium text-black dark:text-white"
+                >
+                  02:00-02:30
+                </p>
+              </div>
+              <div class="flex items-center justify-center p-2.5 xl:p-5">
+                <p id="rate3" class="font-medium text-meta-3">1.00p</p>
+              </div>
+              <div class="flex items-center justify-center p-2.5 xl:p-5">
+                <p id="trend3" class="font-medium text-meta-5">Low</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card for High Usage Warning -->
+      <div
+        class="flex-grow flex flex-col card bg-gradient-to-t from-fuchsia-600 rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50"
+      >
+        <div
+          class="bg-card border-b-violet-500 shadow-lg shadow-fuchsia-700/25 rounded-t-xl py-3 px-4 md:py-4 md:px-5"
+        >
+          <p
+            id="highUsageTimeEl"
+            class="mt-1 text-[#EBD3F8] font-semibold uppercase"
+          >
+            16:00-19:30
+          </p>
+        </div>
+        <div class="p-4 md:p-5">
+          <h3 id="highUsageRateEl" class="text-5xl text-white font-bold">
+            45.7p
+          </h3>
+          <p class="mt-2 text-white">
+            Don't use too much energy during this time!
+          </p>
+        </div>
+      </div>
+
+        </div>
+      </div>
     </div>
-  </div>
-  </div>
   </div>
 
   <script src="https://kit.fontawesome.com/692d2cc607.js" crossorigin="anonymous"></script>
