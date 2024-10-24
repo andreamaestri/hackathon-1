@@ -6,16 +6,23 @@ This project was developed during a three-day hackathon at Code Institute, follo
 
 
 ## Table of Contents
-1. [Features](#features)
-2. [UX/UI](#uxui) 
-3. [Testing](#testing)
-4. [Deployment](#deployment)
-5. [Credits](#credits)
-6. [Planning and Development Process](#planning-and-development-process)
-7. [AI Assistance](#ai-assistance)
+1. [Brief](#Brief) 
+2. [Features](#features)
+3. [UX/UI](#UX/UI)
+4. [User-Stories](#User-Stories)
+5. [Testing](#testing)
+6. [Deployment](#deployment)
+7. [Credits](#credits)
+8. [Reflections](#Reflections)
+9. [AI Assistance](#ai-assistance)
 
-## UX/UI
+### Brief
 
+#### External User’s Goal:
+The user seeks , accessible, easy-to-understand information on energy rates and consumption patterns.
+
+#### Site Owner’s Goal:
+The site owner wants to provide a user-friendly platform that helps users make informed decisions about their energy usage and save on their bills.
 
 ## Features
 
@@ -29,14 +36,8 @@ This project was developed during a three-day hackathon at Code Institute, follo
 - **Alerts and Reminders**: Set up customizable alerts for users to receive notifications about changing rates or reminders to reduce usage during peak times.
 - **Community Insights**: Feature a community section where users can share tips and experiences on energy savings.
 - **FAQs and Support**: Provide a section for frequently asked questions and customer support to assist users with any issues.
-## UX
-### The Brief
 
-#### External User’s Goal:
-The user seeks , accessible, easy-to-understand information on energy rates and consumption patterns.
-
-#### Site Owner’s Goal:
-The site owner wants to provide a user-friendly platform that helps users make informed decisions about their energy usage and save on their bills.
+# UX/UI
 
 ### Initial Design Thoughts
 As this project aims to help users easily understand energy rates and optimize their consumption, the design focuses on simplicity, ease of use, and accessibility. The color palette and layout are chosen to create a calm and inviting atmosphere while highlighting important information, using contrasting colors for readability and intuitive navigation.
@@ -46,7 +47,7 @@ As this project aims to help users easily understand energy rates and optimize t
 
 
 
-![Colourpallete2](assets/images/colour-codes.png)
+![Colourpallete2](assets/images/colour-codes-new.png)
 
 The selected color palette includes deep purple (#2E073F), vibrant magenta (#7A1CAC), soft lavender (#AD49E1), and light lilac (#EBD3F8) to evoke a sense of creativity and calmness. These colors are similar to those used by Octopus Energy, reinforcing brand recognition while creating an inviting atmosphere that enhances user experience and ensures clarity in presenting important information.
 
@@ -60,7 +61,7 @@ The color palette choice for the graph was made to contrast with the varying pur
 - **Montserrat**: Used for the logo and website links because its modern and geometric design enhances readability and creates a cohesive, professional look that aligns with the WattsUp identity.
 - **Sans-serif**: Used for body text due to its clean lines and excellent readability, making it ideal for conveying information clearly across various devices and screen sizes.
 
-### User Stories
+## User-Stories
 
 - **As a user**, I want to be able to visualise peak and off peak periods for gas and electricity consumption, so I can i can check prices anytime, anywhere.
 - **As a user**, I want to easily be able to navigate between sections on mobile and web website, so I can find the information i require.
@@ -71,7 +72,7 @@ The color palette choice for the graph was made to contrast with the varying pur
 - **As the site owner**, I want to provide users with a visual chart of energy price trends over the day, so users can easily identify the cheapest time slots for energy consumption.
 - **As the site owner**, I want to enable users to set up automated reminders for when energy prices are low, so users can ensure they don’t miss opportunities to save on their energy costs..
 
-### Reflections & Acceptance Criteria
+### MoSCoW & Acceptance Criteria
 
 #### Must Haves
 
@@ -112,10 +113,6 @@ The color palette choice for the graph was made to contrast with the varying pur
 
 ## Wireframes & Initial Design
 
-- **Main Page**: [Describe key elements of Page 1, e.g., navbar, hero section].
-- **Graph section**: [Describe key elements of Page 2, e.g., information cards].
-- **Settings**: [Describe key elements of Page 3, e.g., footer, external links].
-
 
 ### Mobile and Tablet Wireframes
 
@@ -137,22 +134,27 @@ The color palette choice for the graph was made to contrast with the varying pur
 ## Testing
 
 ### Tools Used
-- **Chrome Dev Tools**: Used for [purpose of the tool].
-- **Google Lighthouse**: Used for [purpose of the tool].
-- **W3C Validator**: Used for [purpose of the tool].
-- **W3C Validator**: Used for [purpose of the tool].
+- **Chrome Dev Tools**: Used for testing responsiveness.
+- **JSHint**: Used for testing JavaScript.
+- **W3C Validator**: Used for testing html.
+- **W3C Jigsaw**: Used for testing css.
 
 ### Feature Testing
 - [Description of testing process for feature, e.g., navigation, responsiveness].
 
 ## Deployment
 
-The project was deployed using **GitHub Pages** and can be accessed through [live link]. Steps taken to deploy:
-1. [Deployment step 1]
-2. [Deployment step 2]
+The project was deployed using **GitHub Pages** and can be accessed through [https://andreamaestri.github.io/hackathon-1/]. Steps taken to deploy:
+
+1. Go to the repository settings.
+2. Scroll to the GitHub Pages section.
+3. Under Source, select the branch to be deployed (typically main or master).
+4. Choose the root directory or /docs folder as the publishing source.
+5. Save changes.
+6. After a few seconds, GitHub will generate a live link for the site.
 
 
-## Reflection on Development Process
+## Reflections
 
 ### Successes
 - **[Success 1]**: [Brief description]
