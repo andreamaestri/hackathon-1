@@ -22,8 +22,28 @@ body {
 }
 
 #logo {
-    font-family: "Montserrat", sans-serif;
+  font-family: "montserrat", sans-serif;
+  color: white;
+  font-size: 25px;
+  margin-left: 15px;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Initial shadow */
+transition: text-shadow 0.3s ease; /* Smooth transition */
 }
+
+
+#logo:hover {
+  text-shadow: 
+  0 0 10px #7A1CAC, /* Bright glow */
+  0 0 20px #AD49E1, /* Medium glow */
+  0 0 30px #EBD3F8; /* Faint glow */
+}
+
+#navBar {
+  background-color: #2E073F;
+}
+
+/* ------------------------------------------- Burger Icon */
+.navbar-toggler {
 
 .card {
     background-color: #AD49E1;
