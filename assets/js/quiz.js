@@ -30,7 +30,7 @@ const question = [
         question: "What can help reduce energy consumption in the winter?",
         answers: [
             { text:"Opening windows", correct: false},
-            { text:"Using a programmable thermostat", correct: true,
+            { text:"Using a programmable thermostat", correct: true},
             { text:"Keeping doors open", correct: false},
             { text:"Increasing indoor humidity", correct: false},
         ]
@@ -90,4 +90,57 @@ const question = [
         ]
     }
 ]
+
+const questionElement = document.getElementById("question");
+const answerButtons = document.getElementById("answer-questions");
+const nextButton = document.getElementById("next-button");
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function startQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    nextButton.innerHTML = "Next";
+    showQuestion();
+}
+
+function showQuestion() {
+    resetState();
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.
+    question;
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement ("button");
+        button.innerHTML = answer.text;
+        button.classList.add("quiz-button");
+        answerButtons.appendChild(button);
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
+    });
+}
+
+function resetState() {
+    nextButton.style.display = "none";
+    while(answerButtons.firstChild){
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
+}
+
+function selectAnswer() {
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct === "true";
+    if(isCorrect) {
+        selectedBtn.classList.add("correct");
+    } else{
+        selectedBtn.classList.add("incorrect");
+    }
+
+}
+startQuiz();
+
 
