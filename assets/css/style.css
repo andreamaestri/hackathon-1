@@ -214,11 +214,6 @@ transition: text-shadow 0.3s ease; /* Smooth transition */
 .quiz-card {
     
     background: white;
-    width: 90%;
-    max-width: 600px;
-    margin: 100px auto 0;
-    border-radius: 10px;
-    padding: 30px;
 }
 
 .quiz-card h1 {
