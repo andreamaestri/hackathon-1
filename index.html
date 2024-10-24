@@ -14,12 +14,12 @@
   <body>
     <!-- Drawer with Navbar -->
     <div class="drawer drawer-end">
-      <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+      <input id="drawer-m-nav" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <!-- Navbar -->
         <div class="navbar w-full shadow-xl shadow-fuchsia-700/25 text-white">
           <div class="flex-none 2xl:hidden">
-            <label for="my-drawer-4" class="btn btn-square btn-ghost"> <svg
+            <label for="drawer-m-nav" class="btn btn-square btn-ghost"> <svg
                 xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor"
                 class="inline-block h-6 w-6 stroke-current">
@@ -44,8 +44,37 @@
               <li>
                 <a href="#"><i class="fa-solid fa-calendar"></i> Next Day</a>
               </li>
-              <li>
-                <a href="#"><i class="fa-solid fa-cog"></i> Settings</a>
+                <li>
+                <a href="#" onclick="document.getElementById('settings').showModal()"><i class="fa-solid fa-cog"></i> Settings</a>
+                <dialog id="settings" class="modal">
+                  <div class="modal-box">
+                  <h3 class="text-lg font-bold">Settings</h3>
+                  <form id="settingsForm">
+                    <label for="regionCode">Region Code:</label>
+                    <select id="regionCode" name="regionCode" required>
+                        <option value="A">Eastern England (A)</option>
+                        <option value="B">East Midlands (B)</option>
+                        <option value="C">London (C)</option>
+                        <option value="D">Merseyside and Northern Wales (D)</option>
+                        <option value="E">West Midlands (E)</option>
+                        <option value="F">North Eastern England (F)</option>
+                        <option value="G">North Western England (G)</option>
+                        <option value="H">Southern England (H)</option>
+                        <option value="J">South Eastern England (J)</option>
+                        <option value="K">Southern Wales (K)</option>
+                        <option value="L">South Western England (L)</option>
+                        <option value="M">Yorkshire (M)</option>
+                        <option value="N">Southern Scotland (N)</option>
+                        <option value="P">Northern Scotland (P)</option>
+                      </select>
+                      <br>
+                      <div class="modal-action">
+                        <button type="submit" class="btn">Save Settings</button>
+                        <button type="button" class="btn" onclick="document.getElementById('my_modal_5').close()">Close</button>
+                      </div>
+                    </form>
+                  </div>
+                </dialog>
               </li>
 
             </ul>
@@ -53,12 +82,43 @@
         </div>
       </div>
       <div class="drawer-side z-50">
-        <label for="my-drawer-4" aria-label="close sidebar"
+        <label for="drawer-m-nav" aria-label="close sidebar"
           class="drawer-overlay"></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <li><a href="quiz.html">Energy Quiz</a></li>
           <li><a href="#">Next Day</a></li>
-          <li><a href="#">Settings</a></li>
+            <li>
+            <a href="#" onclick="document.getElementById('settings-mobile').showModal()">Settings</a>
+            <dialog id="settings-mobile" class="modal">
+              <div class="modal-box">
+                <h3 class="text-lg font-bold">Settings</h3>
+                <form id="settingsFormMobile">
+                  <label for="regionCode">Region Code:</label>
+                  <select id="regionCodeMobile" name="regionCode" required>
+                    <option value="A">Eastern England (A)</option>
+                    <option value="B">East Midlands (B)</option>
+                    <option value="C">London (C)</option>
+                    <option value="D">Merseyside and Northern Wales (D)</option>
+                    <option value="E">West Midlands (E)</option>
+                    <option value="F">North Eastern England (F)</option>
+                    <option value="G">North Western England (G)</option>
+                    <option value="H">Southern England (H)</option>
+                    <option value="J">South Eastern England (J)</option>
+                    <option value="K">Southern Wales (K)</option>
+                    <option value="L">South Western England (L)</option>
+                    <option value="M">Yorkshire (M)</option>
+                    <option value="N">Southern Scotland (N)</option>
+                    <option value="P">Northern Scotland (P)</option>
+                  </select>
+                  <br>
+                  <div class="modal-action">
+                    <button type="submit" class="btn">Save Settings</button>
+                    <button type="button" class="btn" onclick="document.getElementById('my_modal_7').close()">Close</button>
+                  </div>
+                </form>
+              </div>
+            </dialog>
+            </li>
         </ul>
       </div>
     </div>
@@ -120,7 +180,7 @@
             <h3 id="rateNextEl" class="text-5xl text-white">
               <span class="font-bold dark:text-white">-1.15p</span>
             </h3>
-            <p id="trendEl" class="mt-2 text-violet-500">Trend Average</p>
+            <div class="badge badge-ghost mt-2"><p id="trendEl" class="text-violet-500">Trend Average</p></div>
           </div>
         </div>
 
