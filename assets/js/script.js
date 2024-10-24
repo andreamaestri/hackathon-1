@@ -130,133 +130,134 @@ function isEndOfDay(now) {
 const endOfDay = isEndOfDay(now)
   ? new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000)
   : new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000 - 1);
-  // Retrieve 1-Day JSON request
-  let dayPeriodFrom = startOfDay.toISOString();
-  let dayPeriodTo = endOfDay.toISOString();
+// Retrieve 1-Day JSON request
+let dayPeriodFrom = startOfDay.toISOString();
+let dayPeriodTo = endOfDay.toISOString();
 
-  let dayApiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${dayPeriodFrom}&period_to=${dayPeriodTo}`;
+let dayApiUrl = `https://api.octopus.energy/v1/products/${productCode}/electricity-tariffs/${tariffCode}/standard-unit-rates/?period_from=${dayPeriodFrom}&period_to=${dayPeriodTo}`;
 
-  // Function to format the time slot
-  function timeSlot(validFrom, validTo) {
-    let hour = validFrom.getUTCHours();
-    let minute = validFrom.getUTCMinutes();
-    let hourNext = validTo.getUTCHours();
-    let minuteNext = validTo.getUTCMinutes();
+// Function to format the time slot
+function timeSlot(validFrom, validTo) {
+  let hour = validFrom.getUTCHours();
+  let minute = validFrom.getUTCMinutes();
+  let hourNext = validTo.getUTCHours();
+  let minuteNext = validTo.getUTCMinutes();
 
-    return `${hour.toString().padStart(2, "0")}:${minute
-      .toString()
-      .padStart(2, "0")} - ${hourNext.toString().padStart(2, "0")}:${minuteNext
-      .toString()
-      .padStart(2, "0")}`;
-  }
+  return `${hour.toString().padStart(2, "0")}:${minute
+    .toString()
+    .padStart(2, "0")} - ${hourNext.toString().padStart(2, "0")}:${minuteNext
+    .toString()
+    .padStart(2, "0")}`;
+}
 
-  // Fetch 1-Day API Data
-  fetch(dayApiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.results && data.results.length > 0) {
-        // Filter results for future time slots
-        let filteredResults = data.results.filter((result) => {
-          let validFrom = new Date(result.valid_from);
-          return validFrom >= now; // Only keep future time slots
-        });
+// Fetch 1-Day API Data
+fetch(dayApiUrl)
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.results && data.results.length > 0) {
+      // Filter results for future time slots
+      let filteredResults = data.results.filter((result) => {
+        let validFrom = new Date(result.valid_from);
+        return validFrom >= now; // Only keep future time slots
+      });
 
-        // Reverse the order since the API provides the latest times first
-        filteredResults.reverse();
+      // Reverse the order since the API provides the latest times first
+      filteredResults.reverse();
 
-        // Store valid rates in dayRate array
-        let dayRate = [];
-        filteredResults.forEach((result) => {
-          let dayRatePrice = parseFloat(result.value_inc_vat);
-          let dayRateValidFrom = new Date(result.valid_from);
-          let dayRateValidTo = new Date(result.valid_to);
-          dayRate.push({ dayRatePrice, dayRateValidFrom, dayRateValidTo });
-        });
+      // Store valid rates in dayRate array
+      let dayRate = [];
+      filteredResults.forEach((result) => {
+        let dayRatePrice = parseFloat(result.value_inc_vat);
+        let dayRateValidFrom = new Date(result.valid_from);
+        let dayRateValidTo = new Date(result.valid_to);
+        dayRate.push({ dayRatePrice, dayRateValidFrom, dayRateValidTo });
+      });
 
-        // Calculate average price
-        let totalPrices = dayRate.reduce((sum, slot) => sum + slot.dayRatePrice, 0);
-        let averagePrice = totalPrices / dayRate.length;
+      // Display as table for debugging
+      console.table(dayRate.map(slot => ({
+        TimeSlot: timeSlot(slot.dayRateValidFrom, slot.dayRateValidTo),
+        Price: `${slot.dayRatePrice.toFixed(2)}p`
+      })));
 
-        // Display as table for debugging 
-        console.table(dayRate.map(slot => ({
-          TimeSlot: timeSlot(slot.dayRateValidFrom, slot.dayRateValidTo),
-          Price: `${slot.dayRatePrice.toFixed(2)}p ~`
-        })));
+      // Sort by price in descending order to get the most expensive slots
+      dayRate.sort((a, b) => b.dayRatePrice - a.dayRatePrice);
 
-        // Sort by price in descending order to get the most expensive slots
-        dayRate.sort((a, b) => b.dayRatePrice - a.dayRatePrice);
+      // Get the top 6 most expensive slots
+      let top6Expensive = dayRate.slice(0, 6);
 
-        // Get the top 6 most expensive slots
-        let top6Expensive = dayRate.slice(0, 6);
+      // Find the earliest start time and the latest end time among the top 6 expensive slots
+      let earliestStartTime = top6Expensive[0].dayRateValidFrom;
+      let latestEndTime = top6Expensive[0].dayRateValidTo;
 
-        // Format the time slots for the most expensive rates
-        let firstExpensiveValidFrom = top6Expensive[0].dayRateValidFrom;
-        let lastExpensiveValidTo = top6Expensive[top6Expensive.length - 1].dayRateValidTo;
-        let expensiveTimeSlot = `${timeSlot(firstExpensiveValidFrom, lastExpensiveValidTo)}`;
+      top6Expensive.forEach(slot => {
+        if (slot.dayRateValidFrom < earliestStartTime) {
+          earliestStartTime = slot.dayRateValidFrom;
+        }
+        if (slot.dayRateValidTo > latestEndTime) {
+          latestEndTime = slot.dayRateValidTo;
+        }
+      });
 
-        // Update the highest rate and time slot in the HTML
-        document.getElementById("highUsageRateEl").innerText = `~${top6Expensive[0].dayRatePrice.toFixed(2)}p`;
-        document.getElementById("highUsageTimeEl").innerText = expensiveTimeSlot;
+      // Format the time slot for the most expensive rates
+      let expensiveTimeSlot = `${timeSlot(earliestStartTime, latestEndTime)}`;
 
-        // Display the top 6 expensive slots for debugging
-        top6Expensive.forEach((slot, index) => {
-          console.log(
-            `Top ${index + 1} Expensive Time Slot: "${timeSlot(
-              slot.dayRateValidFrom,
-              slot.dayRateValidTo
-            )}" at ${slot.dayRatePrice.toFixed(2)}p`
-          );
-        });
+      // Update the highest rate and time slot in the HTML
+      document.getElementById("highUsageRateEl").innerText = `${top6Expensive[0].dayRatePrice.toFixed(2)}p`;
+      document.getElementById("highUsageTimeEl").innerText = expensiveTimeSlot;
 
-        // Display top 3 cheapest rates (existing functionality)
-        let top3Cheapest = dayRate.slice(dayRate.length - 3);
-
-        document.getElementById(
-          "rate1"
-        ).innerHTML = `<div class="badge badge-success gap-2">${top3Cheapest[0].dayRatePrice.toFixed(2)}p</div>`;
-        document.getElementById(
-          "rate2"
-        ).innerHTML = `<div class="badge badge-success gap-2">${top3Cheapest[1].dayRatePrice.toFixed(2)}p</div>`;
-        document.getElementById(
-          "rate3"
-        ).innerHTML = `<div class="badge badge-success gap-2">${top3Cheapest[2].dayRatePrice.toFixed(2)}p</div>`;
-
-        document.getElementById("timeSlot1").innerText = timeSlot(
-          top3Cheapest[0].dayRateValidFrom,
-          top3Cheapest[0].dayRateValidTo
+      // Display the top 6 expensive slots for debugging
+      top6Expensive.forEach((slot, index) => {
+        console.log(
+          `Top ${index + 1} Expensive Time Slot: "${timeSlot(
+            slot.dayRateValidFrom,
+            slot.dayRateValidTo
+          )}" at ${slot.dayRatePrice.toFixed(2)}p`
         );
-        document.getElementById("timeSlot2").innerText = timeSlot(
-          top3Cheapest[1].dayRateValidFrom,
-          top3Cheapest[1].dayRateValidTo
-        );
-        document.getElementById("timeSlot3").innerText = timeSlot(
-          top3Cheapest[2].dayRateValidFrom,
-          top3Cheapest[2].dayRateValidTo
-        );
+      });
 
-        // Determine and display trend
-        document.getElementById("trend1").innerHTML = `<div class="badge badge-info gap-2">${
-          top3Cheapest[0].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
-        }</div>`;
-        document.getElementById("trend2").innerHTML = `<div class="badge badge-info gap-2">${
-          top3Cheapest[1].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
-        }</div>`;
-        document.getElementById("trend3").innerHTML = `<div class="badge badge-info gap-2">${
-          top3Cheapest[2].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
-        }</div>`;
+      // Display top 3 cheapest rates (existing functionality)
+      let top3Cheapest = dayRate.slice(dayRate.length - 3);
 
-        // Display the average rate
-        document.getElementById(
-          "averageRateEl"
-        ).innerText = `~ ${averagePrice.toFixed(2)}p`; // Average price with symbol ~
+      document.getElementById(
+        "rate1"
+      ).innerHTML = `<div class="badge badge-success gap-2">${top3Cheapest[0].dayRatePrice.toFixed(2)}p</div>`;
+      document.getElementById(
+        "rate2"
+      ).innerHTML = `<div class="badge badge-success gap-2">${top3Cheapest[1].dayRatePrice.toFixed(2)}p</div>`;
+      document.getElementById(
+        "rate3"
+      ).innerHTML = `<div class="badge badge-success gap-2">${top3Cheapest[2].dayRatePrice.toFixed(2)}p</div>`;
 
-      } else {
-        console.log("No results found.");
-      }
-    })
-    .catch((error) => {
-      console.error("There was a problem with the fetch operation:", error);
-    });
+      document.getElementById("timeSlot1").innerText = timeSlot(
+        top3Cheapest[0].dayRateValidFrom,
+        top3Cheapest[0].dayRateValidTo
+      );
+      document.getElementById("timeSlot2").innerText = timeSlot(
+        top3Cheapest[1].dayRateValidFrom,
+        top3Cheapest[1].dayRateValidTo
+      );
+      document.getElementById("timeSlot3").innerText = timeSlot(
+        top3Cheapest[2].dayRateValidFrom,
+        top3Cheapest[2].dayRateValidTo
+      );
+
+      // Determine and display trend
+      document.getElementById("trend1").innerHTML = `<div class="badge badge-info gap-2">${
+        top3Cheapest[0].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
+      }</div>`;
+      document.getElementById("trend2").innerHTML = `<div class="badge badge-info gap-2">${
+        top3Cheapest[1].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
+      }</div>`;
+      document.getElementById("trend3").innerHTML = `<div class="badge badge-info gap-2">${
+        top3Cheapest[2].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
+      }</div>`;
+    } else {
+      console.log("No results found.");
+    }
+  })
+  .catch((error) => {
+    console.error("There was a problem with the fetch operation:", error);
+  });
 
 //Clock
 window.addEventListener("load", () => {
