@@ -267,22 +267,10 @@
         
 
         <!-- Card for Energy Daily Import Tariff -->
-        <div
-          class="flex-grow flex flex-col custom-card rounded-xl hover:shadow-xl hover:shadow-fuchsia-700/50 md:visible invisible">
-          <!-- Card body with chart content -->
-          <div class="relative w-full h-96">
-            <!-- Custom information -->
-            <div class="about p-5 text-white font-bold text-xl">
-              <h3>Octopus Agile Tariff</h3>
-            </div>
-
-            <!-- Canvas for Chart.js -->
-            <canvas id="myChart"
-              class="z-10 absolute inset-0 bottom-0 w-full h-full"></canvas>
-
-            <!-- Custom Axis -->
-            <div class="z-0 axis inset-x-0 bottom-0 w-full h-full"
-              id="customAxis"></div>
+   <!-- Graph section (75% width) -->
+   <div class="col-md-9 graph-card">
+    <div style="width: 100%">
+      <canvas id="myChart" height="400"></canvas>
           </div>
         </div>
       </div>

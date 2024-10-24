@@ -42,161 +42,229 @@ transition: text-shadow 0.3s ease; /* Smooth transition */
   background-color: #2E073F;
 }
 
-.badge {
+    /* ------------------------------------------- Burger Icon */
+    .navbar-toggler {
+        border: none;
+        background: transparent;
+        position: relative;
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+        outline: none !important;
+        box-shadow: none !important;
+    }
 
-font-family: "Montserrat", sans-serif;
-font-weight: bolder;
+    /* -----------------------Styling each of the burger icon lines */
+    .toggler-icon {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background-color: white;
+        border-radius: 0px;
+        border-color: transparent;
+        transition: transform 0.25s ease-in-out;
+    }
+
+    /* ---------------------------------Positioning the burger icon lines */
+    .top-bar {
+        top: 0px;
+    }
+
+    .middle-bar {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .bottom-bar {
+        bottom: 0px;
+    }
+
+    /*---------- Hover effect: Change the color when hovering over the navbar-toggler */
+    .navbar-toggler:hover .top-bar,
+    .navbar-toggler:hover .middle-bar,
+    .navbar-toggler:hover .bottom-bar {
+        background-color: #7A1CAC;
+    }
+
+    /* -----------------------------------------Toggler animation when collapsed */
+    .navbar-toggler.collapsed .top-bar {
+        transform: rotate(135deg);
+    }
+
+    .navbar-toggler.collapsed .middle-bar {
+        opacity: 0;
+    }
+
+    .navbar-toggler.collapsed .bottom-bar {
+        transform: rotate(-135deg);
+    }
+
+    /* ------------------------------------------- Navbar Links Styling */
+    .navbar-nav .nav-link {
+        color: white !important;
+        /* Make links white for both navbar and offcanvas */
+        transition: color 0.3s ease-in-out;
+        padding: 10px 15px;
+        font-weight: 600;
+    }
+
+    .nav-link:hover {
+        color: #7A1CAC !important;
+    }
+
+    .nav-link:active {
+        color: #7A1CAC !important;
+    }
+
+    .nav-link {
+        color: white !important;
+        font-family: "montserrat", sans-serif;
+        margin-right: 20px;
+    }
+
+    /* --------------------------- Hover effect: Change the link color on hover */
+    .navbar-nav .nav-link:hover {
+        color: #2E073F !important;
+    }
+
+    .navbar-nav .nav-link:active {
+        color: #2E073F !important;
+    }
+
+    /* ------------------------------------------- Offcanvas Links */
+    #offcanvasNavbar .navbar-nav .nav-link {
+        color: white !important;
+    }
+
+    #offcanvasNavbar .navbar-nav .nav-link:hover {
+        color: #2E073F !important;
+    }
+
+    /* ------------------------------------------- Offcanvas styles */
+    .offcanvas {
+        transform: translateX(100%) !important;
+    }
+
+    .offcanvas-header {
+        background-color: #2E073F;
+        height: 64px;
+        color: white;
+    }
+
+    .offcanvas.show {
+        transform: translateX(0) !important;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .btn-close  {
+        background-color: rgba(255, 255, 255, 0.441);
+    }
+
+    .offcanvas-end {
+        background-color: #7A1CAC;
+        width: 280px;
+        transition: transform 0.3s ease-in-out;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    #offcanvasNavbar {
+        background-color: #7A1CAC;
+        color: white;
+        font-family: "montserrat", sans-serif;
+    }
+
+    /* ------------------------------------------- Background color */
+    section {
+        background-color: #7A1CAC;
+        min-height: 100vh;
+    }
+
+     /* ------------------------------------------- Card Section */
+
+    .card {
+        background-color:#AD49E1;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .card-header {
+        background-color: #2E073F;
+        color: white;
+    }
+
+    .card-body {
+        color: white;
+    }
+
+    /* ------------------------------------------- Graph */
+    
+        @media (max-width: 768px) { /* Adjust the max-width as needed */
+            .graph-card  {
+            display: none;
+            }
 }
 
-.card {
-    background-color: #AD49E1;
-    border: none;
+/*------------------------------------------------ Quiz */
+
+
+.quiz-card {
+    
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto 0;
+    border-radius: 10px;
+    padding: 30px;
 }
 
-.card-body {
+.quiz-card h1 {
+    font-size: 25px;
+    color: #2E073F;
+    border-bottom: 1px solid #2E073F;
+    padding-bottom: 30px;
+    
+}
+
+.quiz {
+    padding: 20px 0;
+
+}
+
+.quiz h2 {
+    font-size: 18px;
+    color: #7A1CAC;
+    font-weight: 600;
+}
+
+.quiz-button {
+    background:#AD49E1 ;
     color: white;
-}
-
-.hidden {
-  display: none;
-}
-
-.card:hover {
-  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: scale(1.05);
-}
-
-/* Ensure the canvas matches perfectly with the card */
-canvas {
-    width: 100%;  
-    height: 100%; 
-    margin: 0;    
-    z-index: 0;
-}
-  .custom-card {
-    background: linear-gradient(-45deg, #5555FF, #9787FF, #FF55B8, #FF8787);
-    background-size: 400% 400%;
-    animation: bg 20s infinite;
-    overflow: hidden; /* Ensures children don't overflow outside the card */
-  }
-
-  .card .about {
-    height: 185px;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  .card .about .lead {
-    color: #eee;
-  }
-  
-  .card .info {
-    float: left;
-    padding: 10px 30px 10px 0;
-  }
-  
-  .card .info p {
-    font-size: 11px;
-    color: #aaa;
-    font-weight: 300;
-  }
-  
-  .legends {
-    padding-top: 20px;
-    overflow: hidden;
-  }
-  
-  .legend {
-    display: block;
-    width: 8px;
-    height: 8px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: 50%;
-  }
-  
-  .legend--this {
-    background-color: #5555FF;
-  }
-  
-  .legend--prev {
-    background-color: #FF55B8;
-  }
-  
-  .axis {
-    position: relative;
-    color: #fff;
-    z-index: 1;
-    text-transform: uppercase;
-    display: flex;
+    font-weight: 500;
     width: 100%;
-    bottom: 0;
-  }
-  
-  .axis .tick {
-    flex: 1;
-    position: relative;
-    font-size: 11px;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    line-height: 20px;
-  }
-  
-  .axis .tick::after {
-    content: "";
-    display: block;
-    right: 0;
-    bottom: 0;
-    width: 1px;
-    height: 200px;
-    background: rgba(255, 255, 255, 0.2);
-  }
-  
-  .axis .tick .value {
-    transform: translateY(-240px);
-    opacity: 0;
+    border: 1px solid #2E073F;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
     transition: all 0.3s;
-    top: 20px;
-    left: 0;
-    color: #fff;
-    border-radius: 2px;
-    width: 100%;
-    line-height: 20px;
-  }
+}
+.quiz-button:hover {
+background: #7A1CAC;
+color: white;
+}
 
-  
-  .value.value--this {
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  .day-number {
-    display: block;
-  }
-  
-  .day-name {
-    display: block;
-    opacity: 0.4;
-  }
-  
-  /* Animated background, credits: Manuel Pinto, https://codepen.io/P1N2O/pen/pyBNzX */
-  .card {
-    background: linear-gradient(-45deg, #5555FF, #9787FF, #FF55B8, #FF8787);
-    background-size: 400% 400%;
-    animation: bg 20s infinite;
-  }
-  
-  @keyframes bg
-  {
-    0% {
-          background-position: 0% 50%
-      }
-      50% {
-          background-position: 100% 50%
-      }
-      100% {
-          background-position: 0% 50%
-      }
-  }
-  
-  
+#next-button {
+    background: #AD49E1;
+    color: #2E073F;
+    font-weight: 500;
+    width: 150px;
+    border: 0;
+    padding: 10px;
+    margin: 20px auto 0;
+    border-radius: 3px;
+    cursor: pointer;
+}
