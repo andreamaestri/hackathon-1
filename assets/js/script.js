@@ -1,13 +1,24 @@
-// PATH Parameters
-const now = new Date();
-const next = new Date(now);
-next.setMinutes(now.getMinutes() + 60);
+// Load settings from localStorage
+const mpan = localStorage.getItem('mpan') || '';
+const productCode = localStorage.getItem('productCode') || 'AGILE-24-10-01';
+const periodFrom = localStorage.getItem('periodFrom') || new Date().toISOString();
+const periodTo = localStorage.getItem('periodTo') || new Date(new Date().getTime() + 60 * 60 * 1000).toISOString();
+const topNCheapest = parseInt(localStorage.getItem('topNCheapest')) || 3;
+const topNExpensive = parseInt(localStorage.getItem('topNExpensive')) || 6;
+const apiFetchInterval = parseInt(localStorage.getItem('apiFetchInterval')) || 60000;
 
-let periodFrom = now.toISOString();
-let periodTo = next.toISOString();
+// Function to determine region code from MPAN
+function getRegionCode(mpan) {
+  const regionCodes = {
+    '10': 'A', '11': 'B', '12': 'C', '13': 'D', '14': 'E', '15': 'F', '16': 'G', '17': 'P',
+    '18': 'N', '19': 'J', '20': 'H', '21': 'K', '22': 'L', '23': 'M'
+  };
+  const mpanPrefix = mpan.slice(0, 2);
+  return regionCodes[mpanPrefix] || 'L'; // Default to 'L' if not found
+}
 
-let productCode = "AGILE-24-10-01";
-let tariffCode = "E-1R-AGILE-24-10-01-L";
+const regionCode = getRegionCode(mpan);
+const tariffCode = `E-1R-AGILE-24-10-01-${regionCode}`;
 
 let currentRate;
 
@@ -85,7 +96,6 @@ fetch(apiUrl)
     console.error("Error:", error);
   });
 
-
 //Day Parameters
 const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
@@ -150,72 +160,41 @@ const endOfDay = isEndOfDay(now)
           Price: `${slot.dayRatePrice.toFixed(2)}p ~`
         })));
 
+        // Sort by price in ascending order to get the cheapest slots
+        dayRate.sort((a, b) => a.dayRatePrice - b.dayRatePrice);
+
+        // Get the top N cheapest slots
+        let topNCheapestRates = dayRate.slice(0, topNCheapest);
+
+        // Display top N cheapest rates
+        for (let i = 0; i < topNCheapest; i++) {
+          document.getElementById(`rate${i + 1}`).innerHTML = `<div class="badge badge-success gap-2">${topNCheapestRates[i].dayRatePrice.toFixed(2)}p</div>`;
+          document.getElementById(`timeSlot${i + 1}`).innerText = timeSlot(
+            topNCheapestRates[i].dayRateValidFrom,
+            topNCheapestRates[i].dayRateValidTo
+          );
+          document.getElementById(`trend${i + 1}`).innerHTML = `<div class="badge badge-info gap-2">${
+            topNCheapestRates[i].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
+          }</div>`;
+        }
+
         // Sort by price in descending order to get the most expensive slots
         dayRate.sort((a, b) => b.dayRatePrice - a.dayRatePrice);
 
-        // Get the top 6 most expensive slots
-        let top6Expensive = dayRate.slice(0, 6);
+        // Get the top N most expensive slots
+        let topNExpensiveRates = dayRate.slice(0, topNExpensive);
 
-        // Format the time slots for the most expensive rates
-        let firstExpensiveValidFrom = top6Expensive[0].dayRateValidFrom;
-        let lastExpensiveValidTo = top6Expensive[top6Expensive.length - 1].dayRateValidTo;
-        let expensiveTimeSlot = `${timeSlot(firstExpensiveValidFrom, lastExpensiveValidTo)}`;
-
-        // Update the highest rate and time slot in the HTML
-        document.getElementById("highUsageRateEl").innerText = `~${top6Expensive[0].dayRatePrice.toFixed(2)}p`;
-        document.getElementById("highUsageTimeEl").innerText = expensiveTimeSlot;
-
-        // Display the top 6 expensive slots for debugging
-        top6Expensive.forEach((slot, index) => {
-          console.log(
-            `Top ${index + 1} Expensive Time Slot: "${timeSlot(
-              slot.dayRateValidFrom,
-              slot.dayRateValidTo
-            )}" at ${slot.dayRatePrice.toFixed(2)}p`
+        // Display top N expensive rates
+        for (let i = 0; i < topNExpensive; i++) {
+          document.getElementById(`expensiveRate${i + 1}`).innerHTML = `<div class="badge badge-danger gap-2">${topNExpensiveRates[i].dayRatePrice.toFixed(2)}p</div>`;
+          document.getElementById(`expensiveTimeSlot${i + 1}`).innerText = timeSlot(
+            topNExpensiveRates[i].dayRateValidFrom,
+            topNExpensiveRates[i].dayRateValidTo
           );
-        });
-
-        // Display top 3 cheapest rates (existing functionality)
-        let top3Cheapest = dayRate.slice(dayRate.length - 3);
-
-        document.getElementById(
-          "rate1"
-        ).innerHTML = `<div class="badge badge-success gap-2">${top3Cheapest[0].dayRatePrice.toFixed(2)}p</div>`;
-        document.getElementById(
-          "rate2"
-        ).innerHTML = `<div class="badge badge-success gap-2">${top3Cheapest[1].dayRatePrice.toFixed(2)}p</div>`;
-        document.getElementById(
-          "rate3"
-        ).innerHTML = `<div class="badge badge-success gap-2">${top3Cheapest[2].dayRatePrice.toFixed(2)}p</div>`;
-
-        document.getElementById("timeSlot1").innerText = timeSlot(
-          top3Cheapest[0].dayRateValidFrom,
-          top3Cheapest[0].dayRateValidTo
-        );
-        document.getElementById("timeSlot2").innerText = timeSlot(
-          top3Cheapest[1].dayRateValidFrom,
-          top3Cheapest[1].dayRateValidTo
-        );
-        document.getElementById("timeSlot3").innerText = timeSlot(
-          top3Cheapest[2].dayRateValidFrom,
-          top3Cheapest[2].dayRateValidTo
-        );
-
-        // Determine and display trend
-        document.getElementById("trend1").innerHTML = `<div class="badge badge-info gap-2">${
-          top3Cheapest[0].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
-        }</div>`;
-        document.getElementById("trend2").innerHTML = `<div class="badge badge-info gap-2">${
-          top3Cheapest[1].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
-        }</div>`;
-        document.getElementById("trend3").innerHTML = `<div class="badge badge-info gap-2">${
-          top3Cheapest[2].dayRatePrice < 0 ? "Plunge Pricing" : "Low"
-        }</div>`;
-
-        // Display the average rate
-        document.getElementById(
-          "averageRateEl"
-        ).innerText = `~ ${averagePrice.toFixed(2)}p`; // Average price with symbol ~
+          document.getElementById(`expensiveTrend${i + 1}`).innerHTML = `<div class="badge badge-info gap-2">${
+            topNExpensiveRates[i].dayRatePrice > averagePrice ? "High" : "Moderate"
+          }</div>`;
+        }
 
       } else {
         console.log("No results found.");
