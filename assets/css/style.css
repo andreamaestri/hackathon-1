@@ -184,11 +184,16 @@ transition: text-shadow 0.3s ease; /* Smooth transition */
     }
 
      /* ------------------------------------------- Card Section */
-
     .card {
-        background-color:#AD49E1;
+        background-color: #AD49E1;
         border: none;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for transform and box-shadow */
+    }
+    
+
+    .card:hover {
+        transform: scale(1.05); /* Slightly increase the size on hover */
     }
 
     .card-header {
