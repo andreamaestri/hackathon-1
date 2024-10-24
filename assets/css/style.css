@@ -42,9 +42,6 @@ transition: text-shadow 0.3s ease; /* Smooth transition */
   background-color: #2E073F;
 }
 
-/* ------------------------------------------- Burger Icon */
-.navbar-toggler {
-
 .card {
     background-color: #AD49E1;
     border: none;
