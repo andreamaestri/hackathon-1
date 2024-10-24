@@ -12,8 +12,9 @@ This project was developed during a three-day hackathon at Code Institute, follo
 4. [User-Stories](#User-Stories)
 5. [Testing](#testing)
 6. [Deployment](#deployment)
-7. [Reflections on the Development Process](https://github.com/andreamaestri/hackathon-1/blob/develop_ed/README.md#reflections-on-the-development-process)
-8. [Credits](#Credits)
+7. [Future-Implementations]()
+8. [Reflections on the Development Process](https://github.com/andreamaestri/hackathon-1/blob/develop_ed/README.md#reflections-on-the-development-process)
+9. [Credits](#Credits)
 
 
 ### Brief
@@ -153,6 +154,9 @@ The project was deployed using **GitHub Pages** and can be accessed through [htt
 5. Save changes.
 6. After a few seconds, GitHub will generate a live link for the site.
 
+## Future Implementations
+
+### Lorem ipsum (...)
 
 ## Reflections on the Development Process
 
