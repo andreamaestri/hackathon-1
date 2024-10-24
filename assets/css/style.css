@@ -267,4 +267,6 @@ color: white;
     margin: 20px auto 0;
     border-radius: 3px;
     cursor: pointer;
+    display: none;
 }
+
