@@ -209,38 +209,50 @@ body{
 
 /*------------------------------------------------ Quiz */
 
+.quiz_bg {
+    background: #2E073F;
+    min-height: 100vh; /* Full height coverage */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .quiz-card {
-    
-    background: white;
+    background: #ffffff;
     width: 90%;
     max-width: 600px;
     margin: 100px auto 0;
     border-radius: 10px;
     padding: 30px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 20px; /* Softer shadow */
+    transition: transform 0.3s; /* Smooth hover effect */
+}
+
+.quiz-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
 }
 
 .quiz-card h1 {
     font-size: 25px;
-    color: #2E073F;
-    border-bottom: 1px solid #2E073F;
-    padding-bottom: 30px;
-    
+    color: #2E073F; /* Consistent heading color */
+    border-bottom: 2px solid #AD49E1; /* More pronounced border */
+    padding-bottom: 15px; /* Adjusted padding */
 }
 
 .quiz {
     padding: 20px 0;
-
 }
 
 .quiz h2 {
     font-size: 18px;
-    color: #7A1CAC;
+    color: #2E073F; /* Consistent question color */
     font-weight: 600;
+    margin-bottom: 15px; /* Space below the question */
 }
 
 .quiz-button {
-    background:#AD49E1 ;
+    background: #AD49E1;
     color: white;
     font-weight: 500;
     width: 100%;
@@ -252,28 +264,38 @@ body{
     cursor: pointer;
     transition: all 0.3s;
 }
+
 .quiz-button:hover:not([disabled]) {
-background: #7A1CAC;
-color: white;
+    background: #7A1CAC;
+    color: white;
 }
+
 .quiz-button:disabled {
-cursor: no-drop;
+    cursor: not-allowed; /* Clear indication for disabled */
 }
 
 #next-button {
     background: #AD49E1;
-    color: #2E073F;
+    color: #ffffff;
     font-weight: 500;
-    width: 150px;
+    width: 50%; 
     border: 0;
     padding: 10px;
     margin: 20px auto 0;
-    border-radius: 3px;
+    border-radius: 4px; 
     cursor: pointer;
-    display: none;
+    display: none; 
+    transition: all 0.3s;
 }
+
+#next-button:hover {
+    background: #7A1CAC;
+    color: white;
+}
+
 .correct {
-    background: #9aeabc;
+    background: #6ef1a7;
+    color: #2E073F;
 }
 
 .incorrect {
