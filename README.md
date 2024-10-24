@@ -12,7 +12,7 @@ This project was developed during a three-day hackathon at Code Institute, follo
 4. [User-Stories](#User-Stories)
 5. [Testing](#testing)
 6. [Deployment](#deployment)
-7. [Future-Implementations](https://github.com/andreamaestri/hackathon-1/tree/develop_ed?tab=readme-ov-file#future-implementations)
+7. [Future Implementations](https://github.com/andreamaestri/hackathon-1/tree/develop_ed?tab=readme-ov-file#future-implementations)
 8. [Reflections on the Development Process](https://github.com/andreamaestri/hackathon-1/blob/develop_ed/README.md#reflections-on-the-development-process)
 9. [Credits](#Credits)
 
