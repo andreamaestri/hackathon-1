@@ -252,9 +252,12 @@ body{
     cursor: pointer;
     transition: all 0.3s;
 }
-.quiz-button:hover {
+.quiz-button:hover:not([disabled]) {
 background: #7A1CAC;
 color: white;
+}
+.quiz-button:disabled {
+cursor: no-drop;
 }
 
 #next-button {
@@ -267,4 +270,12 @@ color: white;
     margin: 20px auto 0;
     border-radius: 3px;
     cursor: pointer;
+    display: none;
+}
+.correct {
+    background: #9aeabc;
+}
+
+.incorrect {
+    background: #ff7878;
 }
